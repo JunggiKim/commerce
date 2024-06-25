@@ -7,8 +7,18 @@ dependencies {
     implementation project(":support:logging")
     implementation project(":storage:db-core")
     implementation project(":clients:client-example")
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
-    testImplementation project(":tests:api-docs")
-    
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+    compileOnly 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    implementation 'org.springframework.restdocs:spring-restdocs-restassured'
+    implementation 'io.rest-assured:spring-mock-mvc'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
 }

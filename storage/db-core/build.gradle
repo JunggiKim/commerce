@@ -1,6 +1,11 @@
 dependencies {
     implementation project(':core:core-enum')
     api 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.2.0'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
     runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly 'com.h2database:h2'
 }

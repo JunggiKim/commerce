@@ -16,7 +16,7 @@ public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @CreationTimestamp
     @Column
@@ -26,15 +26,15 @@ public abstract class BaseEntity {
     @Column
     private LocalDateTime updatedAt;
 
-    public Long getId() {
+    protected Long getId() {
         return id;
     }
 
-    public LocalDateTime getCreatedAt() {
+    protected LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public LocalDateTime getUpdatedAt() {
+    protected LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
