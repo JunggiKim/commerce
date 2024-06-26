@@ -1,6 +1,8 @@
 package io.dodn.springboot.storage.db.core.domain.product;
 
 
+import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
+import io.dodn.springboot.core.enums.ProductType.ProductType;
 import io.dodn.springboot.storage.db.core.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Product extends BaseEntity {
+public class ProductEntity extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +37,7 @@ public class Product extends BaseEntity {
 	private int price;
 
 	@Builder
-	private Product(Long id, String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
+	private ProductEntity(Long id, String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
 		int price) {
 		this.productNumber = productNumber;
 		this.type = type;

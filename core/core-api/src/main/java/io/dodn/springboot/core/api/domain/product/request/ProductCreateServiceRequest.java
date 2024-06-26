@@ -1,4 +1,7 @@
 package io.dodn.springboot.core.api.domain.product.request;
+import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
+import io.dodn.springboot.core.enums.ProductType.ProductType;
+import io.dodn.springboot.storage.db.core.domain.product.ProductEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,8 +27,8 @@ public class ProductCreateServiceRequest {
         this.price = price;
     }
 
-    public Product toEntity(String nextProductNumber) {
-        return Product.builder()
+    public ProductEntity toEntity(String nextProductNumber) {
+        return ProductEntity.builder()
                 .productNumber(nextProductNumber)
                 .type(type)
                 .sellingStatus(sellingStatus)

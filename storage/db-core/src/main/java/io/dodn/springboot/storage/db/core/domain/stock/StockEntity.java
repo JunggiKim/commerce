@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Stock extends BaseEntity {
+public class StockEntity extends BaseEntity {
 
 
 
@@ -23,13 +23,13 @@ public class Stock extends BaseEntity {
 
 
     @Builder
-    private Stock( String productNumber, int quantity) {
+    private StockEntity( String productNumber, int quantity) {
         this.productNumber = productNumber;
         this.quantity = quantity;
     }
 
-    public static Stock create(String productNumber,int quantity){
-      return Stock.builder()
+    public static StockEntity create(String productNumber,int quantity){
+      return StockEntity.builder()
               .productNumber(productNumber)
               .quantity(quantity)
               .build();

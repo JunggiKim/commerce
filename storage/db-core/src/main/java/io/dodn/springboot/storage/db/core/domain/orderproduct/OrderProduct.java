@@ -2,7 +2,8 @@ package io.dodn.springboot.storage.db.core.domain.orderproduct;
 
 import io.dodn.springboot.storage.db.core.BaseEntity;
 import io.dodn.springboot.storage.db.core.domain.order.Order;
-import io.dodn.springboot.storage.db.core.domain.product.Product;
+import io.dodn.springboot.storage.db.core.domain.order.OrderEntity;
+import io.dodn.springboot.storage.db.core.domain.product.ProductEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,25 +19,25 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access =  AccessLevel.PROTECTED)
 @Builder
-public class OrderProduct extends BaseEntity{
+public class OrderProductEntity extends BaseEntity{
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Order order;
+    private OrderEntity orderEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Product product;
+    private ProductEntity productEntity;
 
 
-    private OrderProduct(Order order, Product product) {
-        this.order = order;
-        this.product =product;
+    private OrderProductEntity(OrderEntity orderEntity, ProductEntity product) {
+        this.orderEntity = orderEntity;
+        this.productEntity =product;
     }
 
-    public static OrderProduct of(Order order, Product product) {
-    return  OrderProduct.builder()
-        .order(order)
-        .product(product)
+    public static OrderProductEntity of(OrderEntity orderEntity, ProductEntity product) {
+    return  OrderProductEntity.builder()
+        .orderEntity(orderEntity)
+        .productEntity(product)
         .build();
     }
 

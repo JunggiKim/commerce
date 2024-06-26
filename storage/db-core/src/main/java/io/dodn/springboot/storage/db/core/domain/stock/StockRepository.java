@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface StockRepository extends JpaRepository<Stock,Long> {
+public interface StockRepository extends JpaRepository<StockEntity,Long> {
 
 
-    List<Stock> findAllByProductNumberIn(List<String> productNumbers);
+    List<StockEntity> findAllByProductNumberIn(List<String> productNumbers);
 
 
 }

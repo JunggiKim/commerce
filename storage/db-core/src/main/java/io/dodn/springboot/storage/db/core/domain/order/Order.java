@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import io.dodn.springboot.core.enums.OrderStatus;
 import io.dodn.springboot.storage.db.core.BaseEntity;
-import io.dodn.springboot.storage.db.core.domain.orderproduct.OrderProduct;
-import io.dodn.springboot.storage.db.core.domain.product.Product;
+import io.dodn.springboot.storage.db.core.domain.orderproduct.OrderProductEntity;
+import io.dodn.springboot.storage.db.core.domain.product.ProductEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "orders")
-public class Order extends BaseEntity {
+public class OrderEntity extends BaseEntity {
 
 
     @Enumerated(EnumType.STRING)
@@ -38,22 +38,22 @@ public class Order extends BaseEntity {
 
 
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
-    private List<OrderProduct> orderProducts = new ArrayList<>();
+    private List<OrderProductEntity> orderProducts = new ArrayList<>();
 
     @Builder
-    private Order(String userEmail  ,List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+    private OrderEntity(String userEmail  ,List<ProductEntity> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
         this.orderStatus = orderStatus;
         this.totalPrice = calculateTotalPrice(products);
         this.registeredDateTime = registeredDateTime;
         this.orderProducts = products.stream()
-                .map(product -> OrderProduct.of(this , product))
+                .map(product -> OrderProductEntity.of(this , product))
                 .collect(Collectors.toList());
         this.userEmail = userEmail;
     }
 
 
-    public static Order create(List<Product>  products,LocalDateTime registeredDateTime,String userEmail) {
-    return Order.builder()
+    public static OrderEntity create(List<ProductEntity>  products,LocalDateTime registeredDateTime,String userEmail) {
+    return OrderEntity.builder()
             .orderStatus(OrderStatus.INIT)
             .products(products)
             .registeredDateTime(registeredDateTime)
@@ -61,8 +61,8 @@ public class Order extends BaseEntity {
             .build();
     }
 
-    public static Order create(List<Product>  products,LocalDateTime registeredDateTime) {
-    return Order.builder()
+    public static OrderEntity create(List<ProductEntity>  products,LocalDateTime registeredDateTime) {
+    return OrderEntity.builder()
             .orderStatus(OrderStatus.INIT)
             .products(products)
             .registeredDateTime(registeredDateTime)
@@ -70,9 +70,9 @@ public class Order extends BaseEntity {
     }
 
 
-    private static int calculateTotalPrice(List<Product> products) {
+    private static int calculateTotalPrice(List<ProductEntity> products) {
         return products.stream()
-                .mapToInt(Product::getPrice)
+                .mapToInt(ProductEntity::getPrice)
                 .sum();
     }
 
