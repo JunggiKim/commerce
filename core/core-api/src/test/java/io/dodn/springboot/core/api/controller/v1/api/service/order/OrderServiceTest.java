@@ -8,6 +8,7 @@ import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
 import io.dodn.springboot.storage.db.core.entity.orderproduct.OrderProductRepository;
 import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
 import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
+import io.dodn.springboot.storage.db.core.entity.stock.StockEntity;
 import io.dodn.springboot.storage.db.core.entity.stock.StockRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -138,13 +139,14 @@ class OrderServiceTest {
         //  given
         LocalDateTime registeredDateTime = LocalDateTime.now();
 
-        Product product1 = createProductEntity(FOOD, "001", 1000);
-        Product product2 = createProductEntity(ELECTRONIC_PRODUCTS, "002", 3000);
-        Product product3 = createProductEntity(CLOTHES, "003", 5000);
+
+        ProductEntity product1 = createProductEntity(FOOD, 1, 1000);
+        ProductEntity product2 = createProductEntity(ELECTRONIC_PRODUCTS, 2, 3000);
+        ProductEntity product3 = createProductEntity(CLOTHES, 3, 5000);
         productRepository.saveAll(List.of(product1, product2, product3));
 
-        Stock stock = Stock.create("001", 2);
-        Stock stock2 = Stock.create("002", 2);
+        StockEntity stock =  StockEntity.create("001", 2);
+        StockEntity stock2 = StockEntity.create("002", 2);
         stockRepository.saveAll(List.of(stock, stock2));
 
 

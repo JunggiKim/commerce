@@ -1,17 +1,20 @@
 package io.dodn.springboot.storage.db.core.entity.stock;
 
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
-public interface StockRepository extends JpaRepository<StockEntity,Long> {
+@RequiredArgsConstructor
+public class StockRepository {
 
+    private final StockJPARepository stockJPARepository;
 
-    List<StockEntity> findAllByProductNumberIn(List<String> productNumbers);
-
+    public List<StockEntity> findAllByProductNumberIn(List<String> productNumbers){
+        return stockJPARepository.findAllByProductNumberIn(productNumbers);
+    }
 
 }

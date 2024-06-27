@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class StockEntity extends BaseEntity {
 
-
-
     private String productNumber;
 
     private int quantity;

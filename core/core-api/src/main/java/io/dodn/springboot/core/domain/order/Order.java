@@ -52,7 +52,7 @@ public class Order  {
             .build();
     }
 
-    public static Order create(List<Product>  products,LocalDateTime registeredDateTime) {
+    public static Order create(List<Product>  products , LocalDateTime registeredDateTime) {
     return Order.builder()
             .orderStatus(OrderStatus.INIT)
             .products(products)

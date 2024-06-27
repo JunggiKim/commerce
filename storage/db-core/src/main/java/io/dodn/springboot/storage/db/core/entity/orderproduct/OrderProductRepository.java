@@ -1,8 +1,16 @@
 package io.dodn.springboot.storage.db.core.entity.orderproduct;
 
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+
+@Repository
+@RequiredArgsConstructor
+public class OrderProductRepository {
+
+    private final OrderProductJPARepository orderProductJPARepository;
 
 
-public interface OrderProductRepository extends JpaRepository<OrderProductEntity,Long> {
+
+
 }

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface MailSendHistoryRepository  extends JpaRepository<MailSendHistory,Long> {
+public interface MailSendHistoryJPARepository extends JpaRepository<MailSendHistory,Long> {
 }

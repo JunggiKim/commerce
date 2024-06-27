@@ -1,26 +1,16 @@
 package io.dodn.springboot.core.api.controller.v1.api.service.order;
 
+import io.dodn.springboot.core.domain.order.service.OrderStatisticsService;
+import io.dodn.springboot.storage.db.core.entity.mail.MailSendHistoryRepository;
+import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
+import io.dodn.springboot.storage.db.core.entity.orderproduct.OrderProductRepository;
+import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Profile;
-import sample.cafekiosk.client.mail.MailSendClient;
-import sample.cafekiosk.domain.history.mail.MailSendHistoryRepository;
-import sample.cafekiosk.domain.order.Order;
-import sample.cafekiosk.domain.order.OrderRepository;
-import sample.cafekiosk.domain.order.OrderStatus;
-import sample.cafekiosk.domain.orderproduct.OrderProductRepository;
-import sample.cafekiosk.domain.product.Product;
-import sample.cafekiosk.domain.product.ProductRepository;
-import sample.cafekiosk.domain.product.ProductType.ProductType;
-import sample.cafekiosk.order.service.OrderStatisticsService;
-
 import java.time.LocalDateTime;
-import java.util.List;
-
-import static sample.cafekiosk.domain.product.ProductType.ProductSellingStatus.*;
-
 
 @SpringBootTest
 @Profile("test")
@@ -31,7 +21,7 @@ class OrderStatisticsServiceTest {
     private OrderStatisticsService orderStatisticsService;
 
     @Autowired
-    private  OrderRepository orderRepository;
+    private OrderRepository orderRepository;
 
     @Autowired
     private ProductRepository productRepository;
@@ -41,8 +31,8 @@ class OrderStatisticsServiceTest {
     @Autowired
     private OrderProductRepository orderProductRepository;
 
-    @MockBean
-    private MailSendClient mailSendClient;
+//    @MockBean
+//    private MailSendClient mailSendClient;
 
 
     @AfterEach
@@ -91,26 +81,26 @@ class OrderStatisticsServiceTest {
 //                .extracting("content")
 //                .contains("총 매출 합계는 12000원입니다.");
 //    }
-
-    private  Order createPaymentCompletedOrder(List<Product> products, LocalDateTime now) {
-        return Order.builder()
-                .products(products)
-                .orderStatus(OrderStatus.PAYMENT_COMPLETED)
-                .registeredDateTime(now)
-                .build();
-    }
-
-
-    private Product createProduct(ProductType type, String productNumber,int price){
-        return  Product.builder()
-                .productNumber(productNumber)
-                .type(type)
-                .sellingStatus(SELLING)
-                .name("메뉴이름")
-                .price(price)
-                .build();
-
-    }
+//
+//    private  Order createPaymentCompletedOrder(List<Product> products, LocalDateTime now) {
+//        return Order.builder()
+//                .products(products)
+//                .orderStatus(OrderStatus.PAYMENT_COMPLETED)
+//                .registeredDateTime(now)
+//                .build();
+//    }
+//
+//
+//    private Product createProduct(ProductType type, String productNumber,int price){
+//        return  Product.builder()
+//                .productNumber(productNumber)
+//                .type(type)
+//                .sellingStatus(SELLING)
+//                .name("메뉴이름")
+//                .price(price)
+//                .build();
+//
+//    }
 
 
 

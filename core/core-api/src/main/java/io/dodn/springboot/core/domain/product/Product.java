@@ -25,7 +25,7 @@ public class Product {
 	private int price;
 
 	@Builder
-	private Product(Long id, int productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
+	private Product(int productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
 		int price) {
 		this.productNumber = productNumber;
 		this.type = type;

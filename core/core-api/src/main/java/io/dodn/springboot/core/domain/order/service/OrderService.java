@@ -6,9 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
-import io.dodn.springboot.core.domain.product.Product;
 import io.dodn.springboot.core.domain.stock.Stockservice;
-import io.dodn.springboot.storage.db.core.entity.order.OrderEntity;
 import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
 import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
 import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
@@ -20,33 +18,35 @@ import org.springframework.transaction.annotation.Transactional;
 import io.dodn.springboot.core.domain.order.Order;
 import io.dodn.springboot.core.domain.order.response.OrderResponse;
 import lombok.RequiredArgsConstructor;
-@Transactional (readOnly = true)
+
+@Transactional(readOnly = true)
 @Service
 @RequiredArgsConstructor
 public class OrderService {
 
-     private final ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-     private final OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
-     private final StockRepository stockRepository;
+    private final StockRepository stockRepository;
 
-     private final Stockservice stockservice;
+    private final Stockservice stockservice;
 
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final OrderConvert convert;
+
     /*
-*/
+     */
     @Transactional
     public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) throws IllegalAccessException {
-        Order.create(request,registeredDateTime);
+//        Order.create(request, registeredDateTime);
+//        request.toProduct(registeredDateTime);
 
-
-        return  null;
+        return null;
     }
 
     private List<ProductEntity> findProductsBy(List<String> productNumbers) {
         List<ProductEntity> products = productRepository.findAllByProductNumberIn(productNumbers);
-
 
 //        Map<String, ProductEntity> productMap =
 
@@ -59,10 +59,8 @@ public class OrderService {
     }
 
 
-        //list<stirng> = {a, a,b, c }
-       //  map<a,2> map<b,1> map<c,1>
-
-
+    //list<stirng> = {a, a,b, c }
+    //  map<a,2> map<b,1> map<c,1>
 
 
 }
