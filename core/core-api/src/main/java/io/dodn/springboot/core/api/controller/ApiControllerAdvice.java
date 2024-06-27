@@ -22,6 +22,7 @@ public class ApiControllerAdvice {
             case WARN -> log.warn("CoreApiException : {}", e.getMessage(), e);
             default -> log.info("CoreApiException : {}", e.getMessage(), e);
         }
+
         return new ResponseEntity<>(ApiResponse.error(e.getErrorType(), e.getData()), e.getErrorType().getStatus());
     }
 

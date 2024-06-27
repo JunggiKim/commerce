@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.dodn.springboot.core.api.domain.order.request.OrderCreateRequest;
-import io.dodn.springboot.core.api.domain.order.response.OrderResponse;
-import io.dodn.springboot.core.api.domain.order.service.OrderService;
+import io.dodn.springboot.core.api.controller.v1.request.OrderCreateRequest;
+import io.dodn.springboot.core.domain.order.response.OrderResponse;
+import io.dodn.springboot.core.domain.order.service.OrderService;
 import io.dodn.springboot.core.api.support.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

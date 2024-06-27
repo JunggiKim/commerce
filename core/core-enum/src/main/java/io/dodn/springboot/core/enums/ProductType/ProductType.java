@@ -9,17 +9,16 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum ProductType {
 
-    HANDMADE("제조 음료"),
+    CLOTHES("의류"),
 
-    BOTTLE("병 음료"),
+    FOOD("음식"),
 
-    BAKERY("베이커리");
-
+    ELECTRONIC_PRODUCTS("전자제품");
 
 
     private final String text;
 
     public static boolean containsStockType(ProductType type) {
-        return List.of(BOTTLE,BAKERY).contains(type);
+        return List.of(FOOD, ELECTRONIC_PRODUCTS).contains(type);
     }
 }

@@ -1,8 +1,8 @@
 package io.dodn.springboot.core.api.controller.v1;
 
+
 import static io.dodn.springboot.test.api.RestDocsUtils.requestPreprocessor;
 import static io.dodn.springboot.test.api.RestDocsUtils.responsePreprocessor;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -14,9 +14,6 @@ import static org.springframework.restdocs.request.RequestDocumentation.paramete
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.restdocs.request.RequestDocumentation.queryParameters;
 
-import io.dodn.springboot.core.api.controller.v1.request.ExampleRequestDto;
-import io.dodn.springboot.core.api.domain.ExampleResult;
-import io.dodn.springboot.core.api.domain.ExampleService;
 import io.dodn.springboot.test.api.RestDocsTest;
 import io.restassured.http.ContentType;
 

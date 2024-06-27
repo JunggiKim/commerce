@@ -1,10 +1,6 @@
 package io.dodn.springboot.core.api.controller.v1;
 
-import io.dodn.springboot.core.api.controller.v1.request.ExampleRequestDto;
 import io.dodn.springboot.core.api.controller.v1.response.ExampleResponseDto;
-import io.dodn.springboot.core.api.domain.ExampleData;
-import io.dodn.springboot.core.api.domain.ExampleResult;
-import io.dodn.springboot.core.api.domain.ExampleService;
 import io.dodn.springboot.core.api.support.response.ApiResponse;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +20,8 @@ public class ExampleController {
     }
 
     @GetMapping("/get/{exampleValue}")
-    public ApiResponse<ExampleResponseDto> exampleGet(@PathVariable String exampleValue,
+    public ApiResponse<ExampleResponseDto> exampleGet(
+            @PathVariable String exampleValue,
             @RequestParam String exampleParam) {
         ExampleResult result = exampleExampleService.processExample(new ExampleData(exampleValue, exampleParam));
         return ApiResponse.success(new ExampleResponseDto(result.data()));
