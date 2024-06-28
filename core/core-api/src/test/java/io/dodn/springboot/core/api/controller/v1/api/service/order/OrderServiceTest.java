@@ -6,6 +6,7 @@ import io.dodn.springboot.core.domain.product.Product;
 import io.dodn.springboot.core.enums.ProductType.ProductType;
 import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
 import io.dodn.springboot.storage.db.core.entity.orderproduct.OrderProductRepository;
+import io.dodn.springboot.storage.db.core.entity.orderproduct.OrderProductRepositoryImpl;
 import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
 import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
 import io.dodn.springboot.storage.db.core.entity.stock.StockEntity;

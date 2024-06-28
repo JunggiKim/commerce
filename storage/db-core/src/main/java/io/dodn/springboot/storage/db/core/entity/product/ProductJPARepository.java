@@ -19,7 +19,7 @@ public interface ProductJPARepository extends JpaRepository<ProductEntity,Long> 
 
 
 
-    List<ProductEntity> findAllByProductNumberIn(List<String> productNumbers);
+    List<ProductEntity> findAllByProductNumberIn(List<Integer> productNumbers);
 
 
     @Query(value = "select p.product_number from Product p order by id desc limit 1", nativeQuery = true)

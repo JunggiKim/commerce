@@ -14,19 +14,19 @@ import lombok.NoArgsConstructor;
 @Entity
 public class StockEntity extends BaseEntity {
 
-    private String productNumber;
+    private Integer productNumber;
 
     private int quantity;
 
 
 
     @Builder
-    private StockEntity( String productNumber, int quantity) {
+    private StockEntity( int productNumber, int quantity) {
         this.productNumber = productNumber;
         this.quantity = quantity;
     }
 
-    public static StockEntity create(String productNumber,int quantity){
+    public static StockEntity create(int productNumber,int quantity){
       return StockEntity.builder()
               .productNumber(productNumber)
               .quantity(quantity)

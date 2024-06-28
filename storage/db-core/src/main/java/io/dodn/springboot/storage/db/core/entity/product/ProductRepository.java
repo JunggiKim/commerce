@@ -2,38 +2,19 @@ package io.dodn.springboot.storage.db.core.entity.product;
 
 
 import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
-import io.dodn.springboot.storage.db.core.entity.stock.StockJPARepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
-public class ProductRepository {
-
-    private final ProductJPARepository productJPARepository;
+public interface ProductRepository {
 
 
-    /**
-     select *
-     from product
-     where selling_Status in('SELLING','HOLD')
-     **/
-    public List<ProductEntity> findAllBySellingStatusIn(List<ProductSellingStatus> sellingStatuses){
-        return productJPARepository.findAllBySellingStatusIn(sellingStatuses);
-    }
+     List<ProductEntity> findAllBySellingStatusIn(List<ProductSellingStatus> sellingStatuses);
 
-    public List<ProductEntity> findAllByProductNumberIn(List<String> productNumbers){
-        return productJPARepository.findAllByProductNumberIn(productNumbers);
-    }
+     List<ProductEntity> findAllByProductNumberIn(List<Integer> productNumbers);
 
-    public int findLatesProductNumber(){
-        return productJPARepository.findLatesProductNumber();
-    }
-
-
+     int findLatesProductNumber();
 
 
 }

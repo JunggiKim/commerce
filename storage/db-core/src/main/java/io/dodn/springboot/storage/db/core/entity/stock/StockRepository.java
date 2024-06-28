@@ -13,7 +13,7 @@ public class StockRepository {
 
     private final StockJPARepository stockJPARepository;
 
-    public List<StockEntity> findAllByProductNumberIn(List<String> productNumbers){
+    public List<StockEntity> findAllByProductNumberIn(List<Integer> productNumbers){
         return stockJPARepository.findAllByProductNumberIn(productNumbers);
     }
 

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface StockJPARepository extends JpaRepository<StockEntity,Long> {
 
 
-    List<StockEntity> findAllByProductNumberIn(List<String> productNumbers);
+    List<StockEntity> findAllByProductNumberIn(List<Integer> productNumbers);
 
 
 }

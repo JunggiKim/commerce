@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
+import io.dodn.springboot.core.domain.product.service.ProductBusiness;
+import io.dodn.springboot.core.domain.stock.StockBusiness;
+import io.dodn.springboot.core.domain.stock.StockBusinessImpl;
 import io.dodn.springboot.core.domain.stock.Stockservice;
 import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
 import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
@@ -24,43 +27,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final ProductRepository productRepository;
+    private final StockBusiness stockBusiness;
 
-    private final OrderRepository orderRepository;
 
-    private final StockRepository stockRepository;
 
-    private final Stockservice stockservice;
 
     private final ApplicationEventPublisher applicationEventPublisher;
+
     private final OrderConvert convert;
 
-    /*
-     */
+
     @Transactional
     public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) throws IllegalAccessException {
-//        Order.create(request, registeredDateTime);
-//        request.toProduct(registeredDateTime);
+
+        stockBusiness.deductStockQuantities(request);
 
         return null;
     }
 
-    private List<ProductEntity> findProductsBy(List<String> productNumbers) {
-        List<ProductEntity> products = productRepository.findAllByProductNumberIn(productNumbers);
 
-//        Map<String, ProductEntity> productMap =
-
-        Map<Integer, ProductEntity> productMap = products.stream()
-                .collect(Collectors.toMap(ProductEntity::getProductNumber, product -> product));
-
-        return productNumbers.stream()
-                .map(productMap::get)
-                .collect(Collectors.toList());
-    }
-
-
-    //list<stirng> = {a, a,b, c }
-    //  map<a,2> map<b,1> map<c,1>
 
 
 }

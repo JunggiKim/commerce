@@ -3,14 +3,12 @@ package io.dodn.springboot.core.api.controller.v1.api.service.order;
 import io.dodn.springboot.core.domain.order.service.OrderStatisticsService;
 import io.dodn.springboot.storage.db.core.entity.mail.MailSendHistoryRepository;
 import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
-import io.dodn.springboot.storage.db.core.entity.orderproduct.OrderProductRepository;
+import io.dodn.springboot.storage.db.core.entity.orderproduct.OrderProductRepositoryImpl;
 import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Profile;
-import java.time.LocalDateTime;
 
 @SpringBootTest
 @Profile("test")
@@ -29,7 +27,7 @@ class OrderStatisticsServiceTest {
     private MailSendHistoryRepository mailSendHistoryRepository;
 
     @Autowired
-    private OrderProductRepository orderProductRepository;
+    private OrderProductRepositoryImpl orderProductRepository;
 
 //    @MockBean
 //    private MailSendClient mailSendClient;

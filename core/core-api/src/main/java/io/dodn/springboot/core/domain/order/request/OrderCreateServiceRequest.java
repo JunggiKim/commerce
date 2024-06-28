@@ -15,26 +15,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public record OrderCreateServiceRequest(
         String userEmail,
-
-        @NotEmpty(message = "주문 상품은 필수입니다.")
-        List<OrderCreateServiceRequestProductDTO> orderCreateServiceRequestProductDTOS
-
+        @NotEmpty(message = "주문 상품 목록은 필수입니다.")
+        List<Integer> productNumbers
 ) {
 
-
-    record OrderCreateServiceRequestProductDTO(
-            int productNumber,
-            int quantity,
-            ProductType type,
-            ProductSellingStatus status,
-            String name,
-            int price
-    ) {
-    }
-
-//    public static OrderCreateServiceRequest of (){
-//
-//    }
 
 
     //  order에서 주문생성 로직과 DTO 변환 고민 중...
