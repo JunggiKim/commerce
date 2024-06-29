@@ -2,24 +2,16 @@ package io.dodn.springboot.core.domain.order.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
-import io.dodn.springboot.core.domain.product.service.ProductBusiness;
-import io.dodn.springboot.core.domain.stock.StockBusiness;
-import io.dodn.springboot.core.domain.stock.StockBusinessImpl;
-import io.dodn.springboot.core.domain.stock.Stockservice;
-import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
-import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
-import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
-import io.dodn.springboot.storage.db.core.entity.stock.StockRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.dodn.springboot.core.domain.order.Order;
+import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
 import io.dodn.springboot.core.domain.order.response.OrderResponse;
+import io.dodn.springboot.core.domain.orderproduct.OrderProduct;
+import io.dodn.springboot.core.domain.product.service.ProductBusiness;
+import io.dodn.springboot.storage.db.core.entity.product.response.OrderCreatePersistenceResponse;
 import lombok.RequiredArgsConstructor;
 
 @Transactional(readOnly = true)
@@ -27,25 +19,31 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final StockBusiness stockBusiness;
+	private final ProductBusiness productBusiness;
 
+	private final OrderBusiness orderBusiness;
 
+	private final ApplicationEventPublisher applicationEventPublisher;
 
+	private final OrderConvert convert;
 
-    private final ApplicationEventPublisher applicationEventPublisher;
+	// 재고 감소후 재고 감소 가 성공적으로 되었다면
+	// 주문 과 주문 상품을 등록한다.
+	// 성공한 주문내역을 반환 한다
 
-    private final OrderConvert convert;
+	@Transactional
+	public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) throws
+		IllegalAccessException {
 
+		List<OrderCreatePersistenceResponse> orderCreateDtoList =
+			productBusiness.productDeductQuantities(request.productDTOS());
 
-    @Transactional
-    public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) throws IllegalAccessException {
+		List<OrderProduct> orderProductList = productBusiness.orderProductregisattrion(orderCreateDtoList);
 
-        stockBusiness.deductStockQuantities(request);
+		// OrderCreateResponse orderCreateResponse
 
-        return null;
-    }
-
-
-
+		return orderBusiness.orderregisattrion(orderProductList);
+		;
+	}
 
 }

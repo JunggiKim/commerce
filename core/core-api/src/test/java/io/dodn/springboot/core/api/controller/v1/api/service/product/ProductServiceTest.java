@@ -1,6 +1,7 @@
 package io.dodn.springboot.core.api.controller.v1.api.service.product;
 
 import io.dodn.springboot.core.domain.product.service.ProductService;
+import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
 import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +37,7 @@ class ProductServiceTest {
     @Test
     void createProduct() {
         //  given
-        Product product = createProduct("001", CLOTHES, SELLING, "아메리카노", 4000);
+        ProductEntity product = createProduct("001", CLOTHES, SELLING, "아메리카노", 4000);
         productRepository.save(product);
 
         ProductCreateRequest request = ProductCreateRequest.builder()

@@ -1,9 +1,12 @@
 package io.dodn.springboot.storage.db.core.entity.product;
 
 
+import java.math.BigDecimal;
+
 import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
 import io.dodn.springboot.core.enums.ProductType.ProductType;
 import io.dodn.springboot.storage.db.core.BaseEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,7 +27,7 @@ public class ProductEntity extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private int productNumber;
+	private Long productNumber;
 
 	@Enumerated(EnumType.STRING)
 	private ProductType type;
@@ -34,16 +37,19 @@ public class ProductEntity extends BaseEntity {
 
 	private String name;
 
-	private int price;
+	private Long price;
+
+	private Long quantity;
 
 	@Builder
-	private ProductEntity(Long id, int productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
-		int price) {
+	private ProductEntity(Long id, Long productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
+		Long price , Long quantity) {
 		this.productNumber = productNumber;
 		this.type = type;
 		this.sellingStatus = sellingStatus;
 		this.name = name;
 		this.price = price;
+		this.quantity = quantity;
 	}
 
 

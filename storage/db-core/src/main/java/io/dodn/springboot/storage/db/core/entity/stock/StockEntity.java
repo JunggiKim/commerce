@@ -16,7 +16,7 @@ public class StockEntity extends BaseEntity {
 
     private Integer productNumber;
 
-    private int quantity;
+
 
 
 
@@ -34,16 +34,5 @@ public class StockEntity extends BaseEntity {
 }
 
 
-    public boolean isQuantityLessThan(int quantity) {
-        return this.quantity < quantity;
 
-    }
-
-
-    public void deductQuantity(int quantity) throws IllegalAccessException {
-            if(isQuantityLessThan(quantity)){
-                throw new IllegalArgumentException("차감할 재고 수량이 없습니다.");
-            }
-        this.quantity -= quantity;
-    }
 }

@@ -15,20 +15,16 @@ public class OrderProduct {
 
     private Long id;
 
-    private Order order;
-
     private Product product;
 
 
 
-    private OrderProduct(Long id, Order order, Product product) {
+    private OrderProduct(Long id, Product product) {
         this.id = id;
-        this.order = order;
         this.product = product;
     }
 
-    private OrderProduct(Order order, Product product) {
-        this.order = order;
+    private OrderProduct(Product product) {
         this.product =product;
     }
 

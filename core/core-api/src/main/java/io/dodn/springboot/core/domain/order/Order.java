@@ -20,6 +20,8 @@ public class Order  {
 
     private Long id;
 
+    private Long orderNumber;
+
     private OrderStatus orderStatus;
 
     private int totalPrice;
@@ -32,7 +34,8 @@ public class Order  {
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
-    private Order(String userEmail  , List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+    private Order(Long orderNumber, String userEmail  , List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+        this.orderNumber = orderNumber;
         this.orderStatus = orderStatus;
         this.totalPrice = calculateTotalPrice(products);
         this.registeredDateTime = registeredDateTime;
@@ -43,7 +46,7 @@ public class Order  {
     }
 
 
-    public static Order create(List<Product>  products,LocalDateTime registeredDateTime,String userEmail) {
+    public static Order create(List<Product>  products , LocalDateTime registeredDateTime,String userEmail) {
     return Order.builder()
             .orderStatus(OrderStatus.INIT)
             .products(products)
@@ -61,11 +64,11 @@ public class Order  {
     }
 
 
-    private static int calculateTotalPrice(List<Product> products) {
-        return products.stream()
-                .mapToInt(Product::getPrice)
-                .sum();
-    }
+    // private static int calculateTotalPrice(List<Product> products) {
+    //     return products.stream()
+    //             .map(Product::getPrice)
+    //             .sum();
+    // }
 
 
 }

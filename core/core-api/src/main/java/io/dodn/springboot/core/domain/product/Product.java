@@ -2,6 +2,8 @@ package io.dodn.springboot.core.domain.product;
 
 
 
+import java.math.BigDecimal;
+
 import io.dodn.springboot.core.domain.stock.Stock;
 import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
 import io.dodn.springboot.core.enums.ProductType.ProductType;
@@ -14,8 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product {
 
-
-	private int productNumber;
+	private Long productNumber;
 
 	private ProductType type;
 
@@ -23,20 +24,34 @@ public class Product {
 
 	private String name;
 
-	private int price;
+	private BigDecimal price;
 
-	private Stock stock;
+	private Long quantity;
 
 	@Builder
-	private Product(int productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
-		int price , Stock stock) {
+	private Product(Long productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
+		BigDecimal price , Long quantity) {
 		this.productNumber = productNumber;
-		this.type = type;
+   		this.type = type;
 		this.sellingStatus = sellingStatus;
 		this.name = name;
 		this.price = price;
-		this.stock = stock;
+		this.quantity = quantity;
 	}
 
+
+
+    public  boolean isQuantityLessThan(Long quantity) {
+        return this.quantity < quantity;
+
+    }
+
+
+    public void deductQuantity(Long quantity) throws IllegalAccessException {
+        if (isQuantityLessThan(quantity)) {
+            throw new IllegalArgumentException(this.name +  "차감할 재고 수량이 없습니다.");
+        }
+        this.quantity -= quantity;
+    }
 
 }

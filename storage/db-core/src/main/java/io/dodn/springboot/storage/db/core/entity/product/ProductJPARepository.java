@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
 
 @Repository
-public interface ProductJPARepository extends JpaRepository<ProductEntity,Long> {
+interface ProductJPARepository extends JpaRepository<ProductEntity,Long> {
     /**
     select *
     from product
@@ -19,7 +19,7 @@ public interface ProductJPARepository extends JpaRepository<ProductEntity,Long> 
 
 
 
-    List<ProductEntity> findAllByProductNumberIn(List<Integer> productNumbers);
+    List<ProductEntity> findAllByProductNumberIn(List<Long> productNumbers);
 
 
     @Query(value = "select p.product_number from Product p order by id desc limit 1", nativeQuery = true)

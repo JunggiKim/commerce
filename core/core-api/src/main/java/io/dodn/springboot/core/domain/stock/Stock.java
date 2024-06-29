@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Stock {
 
     private int productNumber;
-    private int quantity;
+
 
     @Builder
     private Stock(int productNumber, int quantity) {
@@ -28,16 +28,4 @@ public class Stock {
     }
 
 
-    public boolean isQuantityLessThan(int quantity) {
-        return this.quantity < quantity;
-
-    }
-
-
-    public void deductQuantity(int quantity) throws IllegalAccessException {
-        if (isQuantityLessThan(quantity)) {
-            throw new IllegalArgumentException("차감할 재고 수량이 없습니다.");
-        }
-        this.quantity -= quantity;
-    }
 }
