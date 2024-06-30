@@ -14,7 +14,6 @@ public record OrderCreateServiceRequest(
 ) {
 
 	 public record productDTO(
-
 		Long productNumber,
 		Long quantity
 

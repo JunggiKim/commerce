@@ -7,20 +7,13 @@ import io.dodn.springboot.core.enums.ProductType.ProductType;
 import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;,
 
 public record OrderCreatePersistenceRequest(
-
 	Long productNumber,
-
 	ProductType type,
-
 	ProductSellingStatus sellingStatus,
-
 	String name,
-
 	BigDecimal price,
-
 	Long quantity
 	) {
-
 	public ProductEntity toEntity(){
 	    return ProductEntity.builder()
 			.productNumber(productNumber)

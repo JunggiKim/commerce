@@ -46,7 +46,7 @@ public class OrderEntity extends BaseEntity {
         this.totalPrice = calculateTotalPrice(products);
         this.registeredDateTime = registeredDateTime;
         this.orderProducts = products.stream()
-                .map(product -> OrderProductEntity.of(this , product))
+                .map(OrderProductEntity::of)
                 .collect(Collectors.toList());
         this.userEmail = userEmail;
     }

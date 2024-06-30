@@ -18,22 +18,27 @@ import lombok.NoArgsConstructor;
 public class OrderProductEntity extends BaseEntity{
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private OrderEntity orderEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private ProductEntity productEntity;
 
 
-    private OrderProductEntity(OrderEntity orderEntity, ProductEntity product) {
-        this.orderEntity = orderEntity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private OrderEntity orderEntity;
+
+
+
+
+
+    private OrderProductEntity(ProductEntity product, OrderEntity orderEntity) {
         this.productEntity =product;
+        this.orderEntity = orderEntity;
     }
 
-    public static OrderProductEntity of(OrderEntity orderEntity, ProductEntity product) {
+    public static OrderProductEntity of(ProductEntity product, OrderEntity orderEntity) {
     return  OrderProductEntity.builder()
-        .orderEntity(orderEntity)
         .productEntity(product)
+        .orderEntity(orderEntity)
         .build();
     }
 
