@@ -48,7 +48,7 @@ class StockserviceTest {
 //			});
 //		}
 //		latch.await();
-//		Assertions.assertThat(stock.getQuantity()).isEqualTo(0);
+//		Assertions.assertThat(stock.getStockQuantity()).isEqualTo(0);
 //	}
 
 }
