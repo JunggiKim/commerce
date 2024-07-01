@@ -17,12 +17,12 @@ public record AllFieldProductDTO(
 
 	public static AllFieldProductDTO of(Product product) {
 		return new AllFieldProductDTO(
-			product.getProductNumber(),
+			product.getProductId(),
 			product.getType(),
 			product.getSellingStatus(),
 			product.getName(),
 			product.getPrice(),
-			product.getQuantity()
+			product.getStockQuantity()
 			);
 	}
 

@@ -47,7 +47,7 @@ class ProductRepositoryTest {
         //  then
 
         assertThat(products).hasSize(2)
-                            .extracting("productNumber","name","sellingStatus")
+                            .extracting("productId","name","sellingStatus")
                             .containsExactlyInAnyOrder(
                                     tuple("001","아메리카노",SELLING),
                                     tuple("002","카페라떼",HOLD)
@@ -74,7 +74,7 @@ class ProductRepositoryTest {
 
 
         assertThat(products).hasSize(2)
-                .extracting("productNumber","name","sellingStatus")
+                .extracting("productId","name","sellingStatus")
                 .containsExactlyInAnyOrder(
                         tuple("001","아메리카노",SELLING),
                         tuple("002","카페라떼",HOLD)

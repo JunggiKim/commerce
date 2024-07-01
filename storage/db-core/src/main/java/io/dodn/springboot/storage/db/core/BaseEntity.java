@@ -14,10 +14,6 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
-
     @CreationTimestamp
     @Column
     private LocalDateTime createdAt;
@@ -26,9 +22,6 @@ public abstract class BaseEntity {
     @Column
     private LocalDateTime updatedAt;
 
-    protected Long getId() {
-        return id;
-    }
 
     protected LocalDateTime getCreatedAt() {
         return createdAt;

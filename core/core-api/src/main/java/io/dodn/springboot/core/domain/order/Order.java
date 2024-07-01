@@ -1,11 +1,10 @@
 package io.dodn.springboot.core.domain.order;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import io.dodn.springboot.core.domain.product.Product;
 import io.dodn.springboot.core.domain.orderproduct.OrderProduct;
 import io.dodn.springboot.core.enums.OrderStatus;
 import lombok.AccessLevel;
@@ -18,54 +17,60 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order  {
 
-    private Long id;
+    private Long orderId;
 
     private OrderStatus orderStatus;
 
-    private int totalPrice;
+    private BigDecimal totalPrice;
 
     private LocalDateTime registeredDateTime;
 
     private String userEmail;
 
-
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
-    private Order(String userEmail  , List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+    private Order(Long orderId, String userEmail  , List<OrderProduct> products, OrderStatus orderStatus, LocalDateTime registeredDateTime, BigDecimal totalPrice) {
+        this.orderId = orderId;
         this.orderStatus = orderStatus;
-        this.totalPrice = calculateTotalPrice(products);
+        this.totalPrice = totalPrice;
         this.registeredDateTime = registeredDateTime;
-        this.orderProducts = products.stream()
-                .map(product -> OrderProduct.of(this , product))
-                .collect(Collectors.toList());
+        this.orderProducts = products;
         this.userEmail = userEmail;
     }
 
 
-    public static Order create(List<Product>  products,LocalDateTime registeredDateTime,String userEmail) {
+    public static Order create(List<OrderProduct>  products,LocalDateTime registeredDateTime,String userEmail) {
     return Order.builder()
             .orderStatus(OrderStatus.INIT)
+            .totalPrice(calculateTotalPrice(products))
             .products(products)
             .registeredDateTime(registeredDateTime)
-            .userEmail( userEmail)
+            .userEmail(userEmail)
             .build();
     }
 
-    public static Order create(List<Product>  products , LocalDateTime registeredDateTime) {
+    public static BigDecimal calculateTotalPrice(List<OrderProduct> products) {
+        long sumNumber = products.stream().mapToLong(value -> value.getPrice().longValue()).sum();
+        return BigDecimal.valueOf(sumNumber);
+    }
+
+    public static Order create(List<OrderProduct>  products , LocalDateTime registeredDateTime , BigDecimal totalPrice , String userEmail) {
     return Order.builder()
             .orderStatus(OrderStatus.INIT)
-            .products(products)
+            .totalPrice(totalPrice)
             .registeredDateTime(registeredDateTime)
+            .userEmail(userEmail)
+            .products(products)
             .build();
     }
 
 
-    private static int calculateTotalPrice(List<Product> products) {
-        return products.stream()
-                .mapToInt(Product::getPrice)
-                .sum();
-    }
+//    private static Long calculateTotalPrice(List<OrderProduct> products) {
+//        return products.stream()
+//                .mapToLong(product -> Long.parseLong(String.valueOf(product)))
+//                .sum();
+//    }
 
 
 }

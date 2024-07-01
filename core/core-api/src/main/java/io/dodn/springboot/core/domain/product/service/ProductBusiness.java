@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import io.dodn.springboot.core.api.support.Business;
 import io.dodn.springboot.core.domain.order.dto.AllFieldProductDTO;
 import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
-import io.dodn.springboot.core.domain.orderproduct.OrderProduct;
 import io.dodn.springboot.core.domain.product.Product;
 import io.dodn.springboot.core.domain.product.ProductConvert;
 import io.dodn.springboot.core.enums.ProductType.ProductType;
@@ -40,7 +39,7 @@ public class ProductBusiness {
 	private static List<Long> extractStockProductNumbers(List<Product> products) {
 		return products.stream().
 			filter(product -> ProductType.containsStockType(product.getType()))
-			.map(Product::getProductNumber)
+			.map(Product::getProductId)
 			.collect(Collectors.toList());
 	}
 
@@ -73,29 +72,28 @@ public class ProductBusiness {
 
 		for (OrderCreateServiceRequest.productDTO productDTO : productDTOs) {
 			Long quantity = productDTO.quantity();
-			Product product = productQuantityMap.get(productDTO.productNumber());
+			Product product = productQuantityMap.get(productDTO.productId());
 
 			product.deductQuantity(quantity);
 
 			deductProduct.add(product);
 		}
 
-		List<AllFieldProductDTO> dtoList = deductProduct.stream().map(AllFieldProductDTO::of).toList();
-
-		return dtoList;
+		return deductProduct.stream()
+				.map(AllFieldProductDTO::of).toList();
 	}
 
 	private Map<Long, Product> getProductQuantityMap(List<OrderCreateServiceRequest.productDTO> productDTOs) {
 		List<Product> productList = findProductsBy(productDTOs);
 
 		return productList.stream()
-			.collect(Collectors.toMap(Product::getProductNumber, product -> product));
+			.collect(Collectors.toMap(Product::getProductId, product -> product));
 
 	}
 
 	public List<Product> findProductsBy(List<OrderCreateServiceRequest.productDTO> productDTOS) {
 		List<Long> productNumbers = productDTOS.stream()
-			.map(OrderCreateServiceRequest.productDTO::productNumber).toList();
+			.map(OrderCreateServiceRequest.productDTO::productId).toList();
 
 		return productConvert.toDomainList(productRepository.findAllByProductNumberIn(productNumbers));
 	}

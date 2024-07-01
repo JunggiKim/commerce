@@ -84,7 +84,7 @@ class OrderServiceTest {
                 .contains(registeredDateTime, 4000);
 
         assertThat(orderResponse.getProducts()).hasSize(2)
-                .extracting("productNumber", "price")
+                .extracting("productId", "price")
                 .containsExactlyInAnyOrder(
                         tuple("001", 1000),
                         tuple("002", 3000)
@@ -125,7 +125,7 @@ class OrderServiceTest {
                 .contains(registeredDateTime, 2000);
 
         assertThat(orderResponse.getProducts()).hasSize(2)
-                .extracting("productNumber", "price")
+                .extracting("productId", "price")
                 .containsExactlyInAnyOrder(
                         tuple("001", 1000),
                         tuple("001", 1000)
@@ -167,7 +167,7 @@ class OrderServiceTest {
                 .contains(registeredDateTime, 10000);
 
         assertThat(orderResponse.getProducts()).hasSize(4)
-                .extracting("productNumber", "price")
+                .extracting("productId", "price")
                 .containsExactlyInAnyOrder(
                         tuple("001", 1000),
                         tuple("001", 1000),
@@ -178,7 +178,7 @@ class OrderServiceTest {
 
 
         assertThat(stocks).hasSize(2)
-                .extracting("productNumber","quantity")
+                .extracting("productId","quantity")
                 .containsExactlyInAnyOrder(
                         tuple("001",0),
                         tuple("002",1)

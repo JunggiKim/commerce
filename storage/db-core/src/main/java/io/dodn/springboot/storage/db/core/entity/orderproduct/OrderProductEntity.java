@@ -1,44 +1,69 @@
 package io.dodn.springboot.storage.db.core.entity.orderproduct;
 
+import io.dodn.springboot.core.enums.ProductType.ProductType;
 import io.dodn.springboot.storage.db.core.BaseEntity;
 import io.dodn.springboot.storage.db.core.entity.order.OrderEntity;
 import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @NoArgsConstructor(access =  AccessLevel.PROTECTED)
-@Builder
 public class OrderProductEntity extends BaseEntity{
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private ProductEntity productEntity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long orderId;
+
+    private Long productId;
+
+    private ProductType type;
+
+    private String name;
+
+    private Long price;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private OrderEntity orderEntity;
 
+    @Builder
+    private OrderProductEntity(
+            Long productId,
+            ProductType type,
+            String name,
+            Long price,
+            Long orderId
+    ) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.type= type;
+        this.name = name;
+        this.price = price;
 
-
-
-
-    private OrderProductEntity(ProductEntity product, OrderEntity orderEntity) {
-        this.productEntity =product;
-        this.orderEntity = orderEntity;
     }
 
-    public static OrderProductEntity of(ProductEntity product, OrderEntity orderEntity) {
+    public static OrderProductEntity of(
+            Long productId,
+            ProductType type,
+            String name,
+            Long price,
+            Long orderId
+    ) {
     return  OrderProductEntity.builder()
-        .productEntity(product)
-        .orderEntity(orderEntity)
+            .orderId(orderId)
+            .productId(productId)
+            .type(type)
+            .name(name)
+            .price(price)
         .build();
     }
 

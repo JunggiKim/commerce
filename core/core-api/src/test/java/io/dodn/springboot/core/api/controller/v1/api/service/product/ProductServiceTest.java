@@ -51,14 +51,14 @@ class ProductServiceTest {
 
         //  then
         assertThat(productResponse)
-                .extracting("productNumber","type","sellingStatus","name","price")
+                .extracting("productId","type","sellingStatus","name","price")
                 .contains("002",CLOTHES,SELLING,"카푸치노",5000);
 
 
 
         List<Product> products = productRepository.findAll();
         assertThat(products).hasSize(2)
-                .extracting("productNumber","type","sellingStatus","name","price")
+                .extracting("productId","type","sellingStatus","name","price")
                 .containsExactlyInAnyOrder(
                         tuple("001",CLOTHES,SELLING,"아메리카노",4000),
                         tuple("002",CLOTHES,SELLING,"카푸치노",5000)
@@ -84,13 +84,13 @@ class ProductServiceTest {
 
         //  then
         assertThat(productResponse)
-                .extracting("productNumber","type","sellingStatus","name","price")
+                .extracting("productId","type","sellingStatus","name","price")
                 .contains("001",CLOTHES,SELLING,"카푸치노",5000);
 
 
         List<Product> products = productRepository.findAll();
         assertThat(products).hasSize(1)
-                .extracting("productNumber","type","sellingStatus","name","price")
+                .extracting("productId","type","sellingStatus","name","price")
                 .contains(
                         tuple("001",CLOTHES,SELLING,"카푸치노",5000)
 

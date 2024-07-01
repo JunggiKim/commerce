@@ -3,15 +3,14 @@ package io.dodn.springboot.core.domain.order.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import io.dodn.springboot.core.domain.order.response.CreateOrderResponse;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
-import io.dodn.springboot.core.domain.order.response.OrderResponse;
 import io.dodn.springboot.core.domain.orderproduct.OrderProduct;
 import io.dodn.springboot.core.domain.product.service.ProductBusiness;
-import io.dodn.springboot.storage.db.core.entity.product.response.OrderCreatePersistenceResponse;
 import lombok.RequiredArgsConstructor;
 
 @Transactional(readOnly = true)
@@ -33,14 +32,12 @@ public class OrderService {
 	// 성공한 주문내역을 반환 한다
 
 	@Transactional
-	public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) throws
+	public CreateOrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) throws
 		IllegalAccessException {
 
-		List<OrderProduct> orderProductList = orderBusiness.orderProductRegistration(request);
+		List<OrderProduct> orderProductList = orderBusiness.orderProductDeductQuantities(request);
 
-
-		return orderBusiness.orderregisattrion(orderProductList);
-		;
+		return orderBusiness.orderRegistration(orderProductList , request.userEmail() , registeredDateTime );
 	}
 
 }

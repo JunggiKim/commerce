@@ -89,9 +89,9 @@ class OrderStatisticsServiceTest {
 //    }
 //
 //
-//    private Product createProduct(ProductType type, String productNumber,int price){
+//    private Product createProduct(ProductType type, String productId,int price){
 //        return  Product.builder()
-//                .productNumber(productNumber)
+//                .productId(productId)
 //                .type(type)
 //                .sellingStatus(SELLING)
 //                .name("메뉴이름")

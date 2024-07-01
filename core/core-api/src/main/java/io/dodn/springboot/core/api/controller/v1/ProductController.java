@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.dodn.springboot.core.api.controller.v1.request.ProductCreateRequest;
-import io.dodn.springboot.core.domain.product.response.ProductResponse;
+import io.dodn.springboot.core.domain.product.response.CreateOrderProductResponse;
 import io.dodn.springboot.core.api.support.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +22,12 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/api/v1/products/new")
-    public ApiResponse<ProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest request){
+    public ApiResponse<CreateOrderProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest request){
         return ApiResponse.success(productService.createProduct(request.toServiceRequest()));
     }
 
     @GetMapping("/api/v1/products/selling")
-    public ApiResponse<List<ProductResponse>> getSellingProducts(){
+    public ApiResponse<List<CreateOrderProductResponse>> getSellingProducts(){
         return ApiResponse.success(productService.getSellingProducts());
     }
 

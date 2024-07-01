@@ -169,7 +169,7 @@ class ProductControllerTest {
 //    @Test
 //    void getSellingProducts() throws Exception {
 //        //  given
-//        List<ProductResponse> result = List.of();
+//        List<CreateOrderProductResponse> result = List.of();
 //        when(productService.getSellingProducts()).thenReturn(result);
 //
 //        //  when then

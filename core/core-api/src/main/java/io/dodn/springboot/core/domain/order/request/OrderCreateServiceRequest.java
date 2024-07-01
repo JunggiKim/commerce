@@ -2,7 +2,6 @@ package io.dodn.springboot.core.domain.order.request;
 
 import java.util.List;
 
-import io.dodn.springboot.core.api.controller.v1.request.OrderCreateRequest;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 
@@ -14,7 +13,7 @@ public record OrderCreateServiceRequest(
 ) {
 
 	 public record productDTO(
-		Long productNumber,
+		Long productId,
 		Long quantity
 
 	) {
@@ -29,13 +28,13 @@ public record OrderCreateServiceRequest(
 	//        this.orderCreateServiceRequestProductDTOS.stream()
 	//                .map(dto -> {
 	//                    Product.builder()
-	//                            .productNumber(dto.productNumber)
+	//                            .productId(dto.productId)
 	//                            .type(Pro)
 	//                })
 	//
 	//
 	//        return Product.builder()
-	//                .productNumber()
+	//                .productId()
 	//
 	//                .build();
 	//    }
@@ -44,7 +43,7 @@ public record OrderCreateServiceRequest(
 	//
 	//
 	//        return Product.builder()
-	//                .productNumber(this.orderCreateServiceRequestProductDTOS.)
+	//                .productId(this.orderCreateServiceRequestProductDTOS.)
 	//
 	//                .build();
 	//    }
