@@ -30,4 +30,11 @@ public interface ProductRepository {
 
 	CreateProductPersistenceResponse productRegistration(CreateProductPersistenceRequest request);
 
+
+	AllFiledProductEntityDTO save(AllFiledProductEntityDTO dto);
+	AllFiledProductEntityDTO saveAll(AllFiledProductEntityDTO dto);
+
+
+
+
 }

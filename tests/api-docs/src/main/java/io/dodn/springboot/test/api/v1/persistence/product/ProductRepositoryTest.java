@@ -1,58 +1,62 @@
-package io.dodn.springboot.test.api.v1.persistence.product;// package io.dodn.springboot.test.api.v1.domain.product;
-//
-// import static io.dodn.springboot.core.enums.ProductType.ProductType.*;
-// import static org.assertj.core.api.Assertions.*;
-//
-// import java.util.List;
-//
-// import org.junit.jupiter.api.AfterEach;
-// import org.junit.jupiter.api.DisplayName;
-// import org.junit.jupiter.api.Test;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.context.SpringBootTest;
-// import org.springframework.test.context.ActiveProfiles;
-//
-// import io.dodn.springboot.core.domain.product.Product;
-// import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
-//
-// @ActiveProfiles("test")
-// @SpringBootTest
-// class ProductRepositoryTest {
-//
-//     @Autowired
-//     private ProductRepository productRepository;
-//
-//
-//
-//     // @AfterEach
-//     // void tearDown() {
-//     //     productRepository.deleteAllInBatch();
-//     // }
-//
-//
-//     @DisplayName("원하는 판매상품을 조회한다")
-//     @Test
-//     void testSample(){
-//         //  given
-//         Product product1 = createProduct(CLOTHES, "001", 4000, SELLING, "아메리카노");
-//         Product product2 = createProduct(CLOTHES, "002", 4500, HOLD, "카페라떼");
-//         Product product3 = createProduct(CLOTHES, "003", 7000, STOP_SELLING, "팥빙수");
-//
-//         productRepository.saveAll(List.of(product1,product2,product3));
-//
-//         //  when
-//         List<Product> products = productRepository.findAllBySellingStatusIn(List.of(SELLING,HOLD));
-//
-//         //  then
-//
-//         assertThat(products).hasSize(2)
-//                             .extracting("productNumber","name","sellingStatus")
-//                             .containsExactlyInAnyOrder(
-//                                     tuple("001","아메리카노",SELLING),
-//                                     tuple("002","카페라떼",HOLD)
-//                             );
-//     }
-//
+package io.dodn.springboot.test.api.v1.persistence.product;
+
+import static io.dodn.springboot.core.enums.ProductType.ProductSellingStatus.*;
+import static io.dodn.springboot.core.enums.ProductType.ProductType.*;
+import static org.assertj.core.api.Assertions.*;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import io.dodn.springboot.core.domain.product.Product;
+import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
+import io.dodn.springboot.core.enums.ProductType.ProductType;
+import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
+import io.dodn.springboot.test.api.example.ContextTest;
+
+@ActiveProfiles("test")
+@SpringBootTest
+class ProductRepositoryTest  extends ContextTest {
+
+    private ProductRepository productRepository;
+
+
+
+    // @AfterEach
+    // void tearDown() {
+    //     productRepository.deleteAllInBatch();
+    // }
+
+
+    @DisplayName("판매 중 이거나 판매 보류 중인 상품을 조회한다")
+    @Test
+    void testSample(){
+        //  given
+        Product product1 = createProduct(CLOTHES, 1L, BigDecimal.valueOf(4000), SELLING, "상의");
+        Product product2 = createProduct(CLOTHES, 2L, BigDecimal.valueOf(5000), HOLD, "하의");
+        Product product3 = createProduct(CLOTHES, 3L, BigDecimal.valueOf(6000), STOP_SELLING, "신발");
+
+        productRepository.saveAll(List.of(product1,product2,product3));
+
+        //  when
+        productRepository.findAllBySellingStatusIn(List.of(SELLING,HOLD));
+
+        //  then
+
+        assertThat(products).hasSize(2)
+                            .extracting("productNumber","name","sellingStatus")
+                            .containsExactlyInAnyOrder(
+                                    tuple("001","아메리카노",SELLING),
+                                    tuple("002","카페라떼",HOLD)
+                            );
+    }
+
 //
 //
 //     @DisplayName("상품번호 리스트로 상품들을 조회한다.")
@@ -104,21 +108,21 @@ package io.dodn.springboot.test.api.v1.persistence.product;// package io.dodn.sp
 //     void findLatesProductNumberWhenProductIsEmpty(){
 //         // when
 //
-//         String lastProductNumber = productRepository.findLatesProductNumber() ;
+//         // String lastProductNumber = productRepository.findLatesProductNumber() ;
 //         //  then
 //
-//         assertThat(lastProductNumber).isEqualTo(null);
+//         // assertThat(lastProductNumber).isEqualTo(null);
 //     }
-//
-//     private Product createProduct(ProductType type, String productNumber, int price, ProductSellingStatus productSellingStatus, String name) {
-//         return Product.builder()
-//                 .productNumber(productNumber)
-//                 .type(type)
-//                 .sellingStatus(productSellingStatus)
-//                 .name(name)
-//                 .price(price)
-//                 .build();
-//
-//     }
-//
-// }
+
+    private Product createProduct(ProductType type, Long productNumber, BigDecimal price, ProductSellingStatus productSellingStatus, String name) {
+        return Product.builder()
+                .productNumber(productNumber)
+                .type(type)
+                .sellingStatus(productSellingStatus)
+                .name(name)
+                .price(price)
+                .build();
+
+    }
+
+}
