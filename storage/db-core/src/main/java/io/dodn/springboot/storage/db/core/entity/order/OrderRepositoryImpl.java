@@ -18,15 +18,12 @@ public class OrderRepositoryImpl implements OrderRepository{
 
     @Override
     public List<OrderEntity> findOrdersBy(LocalDateTime startDateTime, LocalDateTime endDateTime, OrderStatus orderStatus){
-     return  orderJPARepository.findOrdersBy(startDateTime,endDateTime,orderStatus);
+    return  orderJPARepository.findOrdersBy(startDateTime,endDateTime,orderStatus);
     }
 
     @Override
     public OrderRegistrationResponse orderRegistration(OrderRegistrationRequest request) {
-
-        OrderEntity saveOrder = orderJPARepository.save(request.toEntity());
-
-        return OrderRegistrationResponse.of(saveOrder);
+        return OrderRegistrationResponse.of(orderJPARepository.save(request.toEntity()));
     }
 
 

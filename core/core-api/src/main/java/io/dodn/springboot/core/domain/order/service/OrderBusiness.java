@@ -4,6 +4,8 @@ package io.dodn.springboot.core.domain.order.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import io.dodn.springboot.core.api.support.Business;
 import io.dodn.springboot.core.domain.order.Order;
 import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
@@ -19,21 +21,15 @@ import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
 import io.dodn.springboot.storage.db.core.entity.product.response.OrderCreatePersistenceResponse;
 import lombok.RequiredArgsConstructor;
 
-@Business
+@Component
 @RequiredArgsConstructor
 public class OrderBusiness {
 
 	private final OrderRepository orderRepository;
 	private final OrderProductRepository orderProductRepository;
-	private final ProductRepository productRepository;
 	private final ProductBusiness productBusiness;
 	private final OrderProductConvert orderProductConvert;
 	private final OrderConvert orderConvert;
-
-
-
-
-
 
 
 	public List<OrderProduct> orderProductDeductQuantities(OrderCreateServiceRequest request) throws

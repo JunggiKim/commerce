@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,17 +17,13 @@ import io.dodn.springboot.core.domain.product.ProductConvert;
 import io.dodn.springboot.core.enums.ProductType.ProductType;
 import io.dodn.springboot.storage.db.core.entity.product.ProductRepository;
 import io.dodn.springboot.storage.db.core.entity.product.response.OrderCreatePersistenceResponse;
-import io.dodn.springboot.storage.db.core.entity.stock.StockEntity;
-import io.dodn.springboot.storage.db.core.entity.stock.StockRepository;
 import lombok.RequiredArgsConstructor;
 
-@Business
 @RequiredArgsConstructor
+@Component
 public class ProductBusiness {
 
 	private final ProductRepository productRepository;
-
-	private final StockRepository stockRepository;
 
 	private final ProductConvert productConvert;
 
@@ -98,9 +95,5 @@ public class ProductBusiness {
 		return productConvert.toDomainList(productRepository.findAllByProductNumberIn(productNumbers));
 	}
 
-	private Map<Integer, StockEntity> createStockMapBy(List<Integer> stockProductNumbers) {
-		return stockRepository.findAllByProductNumberIn(stockProductNumbers).stream()
-			.collect(Collectors.toMap(StockEntity::getProductNumber, stock -> stock));
-	}
 
 }

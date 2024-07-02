@@ -1,27 +1,27 @@
-package io.dodn.springboot.storage.db.core.entity.product.request
+package io.dodn.springboot.storage.db.core.entity.product.request;
 
 import java.math.BigDecimal;
 
 import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
 import io.dodn.springboot.core.enums.ProductType.ProductType;
-import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;,
+import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
 
 public record OrderCreatePersistenceRequest(
-	Long productNumber,
+	Long productId,
 	ProductType type,
 	ProductSellingStatus sellingStatus,
 	String name,
 	BigDecimal price,
-	Long quantity
+	Long stockQuantity
 	) {
 	public ProductEntity toEntity(){
 	    return ProductEntity.builder()
-			.productNumber(productNumber)
+			.id(productId)
 			.type(type)
 			.sellingStatus(sellingStatus)
 			.name(name)
 			.price(Long.valueOf(String.valueOf(price)))
-			.quantity(quantity)
+			.stockQuantity(stockQuantity)
 			.build();
 	}
 

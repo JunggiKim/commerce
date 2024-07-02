@@ -23,7 +23,7 @@ interface ProductJPARepository extends JpaRepository<ProductEntity,Long> {
 
 
     @Query(value = "select p.product_number from Product p order by id desc limit 1", nativeQuery = true)
-    int findLatesProductNumber();
+    Long findLatesProductNumber();
 
 
 

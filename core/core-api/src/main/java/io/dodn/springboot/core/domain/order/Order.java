@@ -39,7 +39,6 @@ public class Order  {
         this.userEmail = userEmail;
     }
 
-
     public static Order create(List<OrderProduct>  products,LocalDateTime registeredDateTime,String userEmail) {
     return Order.builder()
             .orderStatus(OrderStatus.INIT)
@@ -54,23 +53,6 @@ public class Order  {
         long sumNumber = products.stream().mapToLong(value -> value.getPrice().longValue()).sum();
         return BigDecimal.valueOf(sumNumber);
     }
-
-    public static Order create(List<OrderProduct>  products , LocalDateTime registeredDateTime , BigDecimal totalPrice , String userEmail) {
-    return Order.builder()
-            .orderStatus(OrderStatus.INIT)
-            .totalPrice(totalPrice)
-            .registeredDateTime(registeredDateTime)
-            .userEmail(userEmail)
-            .products(products)
-            .build();
-    }
-
-
-//    private static Long calculateTotalPrice(List<OrderProduct> products) {
-//        return products.stream()
-//                .mapToLong(product -> Long.parseLong(String.valueOf(product)))
-//                .sum();
-//    }
 
 
 }

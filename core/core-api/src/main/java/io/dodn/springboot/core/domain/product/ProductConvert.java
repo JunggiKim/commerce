@@ -13,17 +13,17 @@ import io.dodn.springboot.storage.db.core.entity.product.request.OrderCreatePers
 public class ProductConvert {
 
 	public List<Product> toDomainList(List<AllFiledProductEntityDTO> productDTOS) {
-		return productDTOS.stream().map(allFiledProductEntityDTO -> toDomain(allFiledProductEntityDTO)).toList();
+		return productDTOS.stream().map(this::toDomain).toList();
 	}
 
 	public  Product toDomain(AllFiledProductEntityDTO allFiledProductEntityDTO) {
 		return Product.builder()
-			.productNumber(allFiledProductEntityDTO.productNumber())
+			.productId(allFiledProductEntityDTO.productId())
 			.type(allFiledProductEntityDTO.type())
 			.sellingStatus(allFiledProductEntityDTO.sellingStatus())
 			.name(allFiledProductEntityDTO.name())
 			.price(BigDecimal.valueOf(allFiledProductEntityDTO.price()))
-			.quantity(allFiledProductEntityDTO.quantity())
+			.stockQuantity(allFiledProductEntityDTO.quantity())
 			.build();
 	}
 

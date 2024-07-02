@@ -45,22 +45,6 @@ public class OrderEntity extends BaseEntity {
         this.userEmail = userEmail;
     }
 
-
-    public static OrderEntity create(List<ProductEntity>  products,LocalDateTime registeredDateTime,String userEmail) {
-    return OrderEntity.builder()
-            .orderStatus(OrderStatus.INIT)
-            .registeredDateTime(registeredDateTime)
-            .userEmail( userEmail)
-            .build();
-    }
-
-    public static OrderEntity create(List<ProductEntity>  products,LocalDateTime registeredDateTime) {
-    return OrderEntity.builder()
-            .orderStatus(OrderStatus.INIT)
-            .registeredDateTime(registeredDateTime)
-            .build();
-    }
-
     public static OrderEntity create(
             OrderStatus orderStatus,
             Long totalPrice,
@@ -75,12 +59,6 @@ public class OrderEntity extends BaseEntity {
             .build();
     }
 
-
-    private static Long calculateTotalPrice(List<ProductEntity> products) {
-        return products.stream()
-                .mapToLong(ProductEntity::getPrice)
-                .sum();
-    }
 
 
 }

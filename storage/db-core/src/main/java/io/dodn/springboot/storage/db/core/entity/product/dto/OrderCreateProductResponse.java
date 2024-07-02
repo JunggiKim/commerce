@@ -7,29 +7,22 @@ import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
 import java.util.List;
 
 public record OrderCreateProductResponse(
-
-        int productNumber,
-
+        Long productId,
         ProductType type,
-
         ProductSellingStatus sellingStatus,
-
         String name,
-
-        int price,
-
-        int quantity
+        Long price,
+        Long quantity
 ) {
 
-
-    public static OrderCreateProductResponse of(ProductEntity productEntity) {
+    private static OrderCreateProductResponse of(ProductEntity productEntity) {
         return new OrderCreateProductResponse(
-                productEntity.getProductNumber(),
+                productEntity.getId(),
                 productEntity.getType(),
                 productEntity.getSellingStatus(),
                 productEntity.getName(),
                 productEntity.getPrice(),
-                productEntity.getQuantity()
+                productEntity.getStockQuantity()
         );
     }
 

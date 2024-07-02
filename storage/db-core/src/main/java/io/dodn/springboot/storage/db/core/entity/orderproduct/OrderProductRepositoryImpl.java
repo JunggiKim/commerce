@@ -7,7 +7,10 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 @RequiredArgsConstructor
+@Repository
 class OrderProductRepositoryImpl implements OrderProductRepository{
 
     private final OrderProductJPARepository orderProductJPARepository;
@@ -15,7 +18,8 @@ class OrderProductRepositoryImpl implements OrderProductRepository{
 
     @Override
     public List<OrderProductRegistrationResponse> orderProductRegistration(List<OrderProductRegistrationRequest> requests) {
-        List<OrderProductEntity> orderProductList =  requests.stream().map(OrderProductRegistrationRequest::toEntity).toList();
+        List<OrderProductEntity> orderProductList =  requests.stream()
+            .map(OrderProductRegistrationRequest::toEntity).toList();
 
        return orderProductJPARepository.saveAll(orderProductList).stream()
                .map(OrderProductRegistrationResponse::of).toList();

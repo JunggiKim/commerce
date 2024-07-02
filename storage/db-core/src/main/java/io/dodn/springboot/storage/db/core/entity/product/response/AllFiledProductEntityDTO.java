@@ -5,7 +5,7 @@ import io.dodn.springboot.core.enums.ProductType.ProductType;
 import io.dodn.springboot.storage.db.core.entity.product.ProductEntity;
 
 public record AllFiledProductEntityDTO(
-	 Long productNumber,
+	 Long productId,
 	 ProductType type,
 	 ProductSellingStatus sellingStatus,
 	 String name,
@@ -15,12 +15,12 @@ public record AllFiledProductEntityDTO(
 
 	public static AllFiledProductEntityDTO of (ProductEntity productEntity){
 		return new AllFiledProductEntityDTO(
-		productEntity.getProductNumber(),
+		productEntity.getId(),
 		productEntity.getType(),
 		productEntity.getSellingStatus(),
 		productEntity.getName(),
 		productEntity.getPrice(),
-		productEntity.getQuantity()
+		productEntity.getStockQuantity()
 		);
 	}
 

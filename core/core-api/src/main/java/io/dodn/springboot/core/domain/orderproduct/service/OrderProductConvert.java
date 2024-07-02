@@ -10,7 +10,6 @@ import io.dodn.springboot.core.domain.orderproduct.OrderProduct;
 import io.dodn.springboot.storage.db.core.entity.product.response.OrderCreatePersistenceResponse;
 
 @Component
-
 public class OrderProductConvert {
 
 	public static OrderProduct toDomain(OrderCreatePersistenceResponse dto) {
@@ -44,7 +43,7 @@ public class OrderProductConvert {
 //
 //	public static OrderProduct toDomain2(OrderCreatePersistenceResponse dto) {
 //		Product product = Product.builder()
-//			.productId(dto.productId())
+//			.productNumber(dto.productNumber())
 //			.type(dto.type())
 //			.sellingStatus(dto.sellingStatus())
 //			.name(dto.name())

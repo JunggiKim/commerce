@@ -27,8 +27,7 @@ public class OrderService {
 	private final OrderConvert convert;
 
 	// 주문이 들어오면 들어온 상품의 재고가 있는지 먼저 확인을 한 후
-	// 재고 제거 후 줄인 개수에 맞게 주문상품 을 등록하고 주문을 등록을 해서 반환을 한다.
-	// 주문 과 주문 상품을 등록한다.
+	// 재고 제거 후 주문을 등록하고 주문상품 등록 후
 	// 성공한 주문내역을 반환 한다
 
 	@Transactional
@@ -37,7 +36,7 @@ public class OrderService {
 
 		List<OrderProduct> orderProductList = orderBusiness.orderProductDeductQuantities(request);
 
-		return orderBusiness.orderRegistration(orderProductList , request.userEmail() , registeredDateTime );
+		return orderBusiness.orderRegistration(orderProductList , request.userEmail() , registeredDateTime);
 	}
 
 }

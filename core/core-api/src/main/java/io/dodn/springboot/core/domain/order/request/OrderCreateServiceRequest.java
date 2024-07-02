@@ -28,13 +28,13 @@ public record OrderCreateServiceRequest(
 	//        this.orderCreateServiceRequestProductDTOS.stream()
 	//                .map(dto -> {
 	//                    Product.builder()
-	//                            .productId(dto.productId)
+	//                            .productNumber(dto.productNumber)
 	//                            .type(Pro)
 	//                })
 	//
 	//
 	//        return Product.builder()
-	//                .productId()
+	//                .productNumber()
 	//
 	//                .build();
 	//    }
@@ -43,7 +43,7 @@ public record OrderCreateServiceRequest(
 	//
 	//
 	//        return Product.builder()
-	//                .productId(this.orderCreateServiceRequestProductDTOS.)
+	//                .productNumber(this.orderCreateServiceRequestProductDTOS.)
 	//
 	//                .build();
 	//    }

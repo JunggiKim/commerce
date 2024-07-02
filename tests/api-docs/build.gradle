@@ -5,4 +5,9 @@ dependencies {
     api 'org.springframework.restdocs:spring-restdocs-mockmvc'
     api 'org.springframework.restdocs:spring-restdocs-restassured'
     api 'io.rest-assured:spring-mock-mvc'
+    implementation project(":core:core-api")
+    implementation project(":core:core-enum")
+    implementation project(":storage:db-core")
+
+
 }

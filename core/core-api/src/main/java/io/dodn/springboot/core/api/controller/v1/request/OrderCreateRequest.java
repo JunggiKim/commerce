@@ -3,9 +3,11 @@ package io.dodn.springboot.core.api.controller.v1.request;
 import java.util.List;
 
 import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 public record OrderCreateRequest(
+	@NotBlank(message = "주문한 사용자의 이메일은 필수 입니다.")
 	String userEmail,
 	@NotEmpty(message = "주문 상품은 필수입니다.")
 	List<ProductDTO> productDTOS

@@ -1,10 +1,10 @@
-package io.dodn.springboot.core.domain.order.dto
+package io.dodn.springboot.core.domain.order.dto;
 
 import java.math.BigDecimal;
 
 import io.dodn.springboot.core.domain.product.Product;
 import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
-import io.dodn.springboot.core.enums.ProductType.ProductType;,
+import io.dodn.springboot.core.enums.ProductType.ProductType;
 
 public record AllFieldProductDTO(
 	Long productNumber,

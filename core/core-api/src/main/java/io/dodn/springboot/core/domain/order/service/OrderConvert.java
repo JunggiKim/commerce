@@ -15,7 +15,7 @@ public class OrderConvert {
     public OrderRegistrationRequest toOrderRegistrationRequest(Order order) {
         return new OrderRegistrationRequest(
                 order.getOrderStatus(),
-                order.calculateTotalPrice(),
+                order.getTotalPrice().longValue(),
                 order.getRegisteredDateTime(),
                 order.getUserEmail());
     }

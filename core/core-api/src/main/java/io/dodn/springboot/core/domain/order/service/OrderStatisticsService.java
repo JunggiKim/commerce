@@ -1,15 +1,8 @@
 package io.dodn.springboot.core.domain.order.service;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import io.dodn.springboot.core.domain.mail.MailService;
-import io.dodn.springboot.core.domain.order.Order;
-import io.dodn.springboot.core.enums.OrderStatus;
-import io.dodn.springboot.storage.db.core.entity.order.OrderEntity;
-import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import io.dodn.springboot.storage.db.core.entity.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
 
 
@@ -23,7 +16,7 @@ public class OrderStatisticsService {
 
     private final OrderRepository orderRepository;
 
-    private final MailService mailService;
+    // private final MailService mailService;
 
 
 //    public boolean sendOrderStatisticsMail(LocalDate orderDate,String email){
