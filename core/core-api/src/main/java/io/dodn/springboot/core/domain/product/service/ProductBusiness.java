@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.dodn.springboot.core.api.support.Business;
 import io.dodn.springboot.core.domain.order.dto.AllFieldProductDTO;
 import io.dodn.springboot.core.domain.order.request.OrderCreateServiceRequest;
 import io.dodn.springboot.core.domain.product.Product;
@@ -35,7 +34,7 @@ public class ProductBusiness {
 
 	private static List<Long> extractStockProductNumbers(List<Product> products) {
 		return products.stream().
-			filter(product -> ProductType.containsStockType(product.getType()))
+			filter(product -> ProductType.isClothes(product.getType()))
 			.map(Product::getProductId)
 			.collect(Collectors.toList());
 	}

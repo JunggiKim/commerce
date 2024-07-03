@@ -22,7 +22,6 @@ public class ProductService {
     private final ProductRepository productRepository;
 
 
-
     @Transactional
     public CreateProductResponse createProduct(ProductCreateServiceRequest request) {
         Long nextProductNumber = createNextProductNumber();

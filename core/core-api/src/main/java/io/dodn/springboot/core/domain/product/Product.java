@@ -45,6 +45,7 @@ public class Product {
 
 			.build();
 
+
 	}
 
 	public boolean isQuantityLessThan(Long quantity) {

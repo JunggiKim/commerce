@@ -48,7 +48,6 @@ public class ProductEntity extends BaseEntity {
 		this.price = price;
 		this.stockQuantity = stockQuantity;
 		this.productNumber = productNumber;
-
 	}
 
 
