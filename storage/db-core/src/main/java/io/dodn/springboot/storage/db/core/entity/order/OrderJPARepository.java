@@ -10,12 +10,9 @@ import org.springframework.stereotype.Repository;
 import io.dodn.springboot.core.enums.OrderStatus;
 
 @Repository
-public interface OrderJPARepository extends JpaRepository <OrderEntity,Long> {
-
+public interface OrderJPARepository extends JpaRepository<OrderEntity, Long> {
 
     @Query("select o from OrderEntity o where o.registeredDateTime >= :startDateTime and o.registeredDateTime < :endDateTime and o.orderStatus = :orderStatus")
-    List<OrderEntity> findOrdersBy(LocalDateTime startDateTime,LocalDateTime endDateTime, OrderStatus orderStatus);
-
-
+    List<OrderEntity> findOrdersBy(LocalDateTime startDateTime, LocalDateTime endDateTime, OrderStatus orderStatus);
 
 }

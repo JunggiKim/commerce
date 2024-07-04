@@ -6,22 +6,12 @@ import io.dodn.springboot.storage.db.core.entity.product.request.CreateProductPe
 
 public record ProductCreateServiceRequest(
 
-	ProductType type,
-	ProductSellingStatus sellingStatus,
-	String name,
-	Long price,
-	Long stockQuantity
+        ProductType type, ProductSellingStatus sellingStatus, String name, Long price, Long stockQuantity
 
 ) {
 
-	public CreateProductPersistenceRequest toPersistenceRequest(Long nextProductNumber) {
-		return new CreateProductPersistenceRequest(
-			this.type,
-			this.sellingStatus,
-			this.name,
-			this.price,
-			this.stockQuantity,
-			nextProductNumber
-		);
-	}
+    public CreateProductPersistenceRequest toPersistenceRequest(Long nextProductNumber) {
+        return new CreateProductPersistenceRequest(this.type, this.sellingStatus, this.name, this.price,
+                this.stockQuantity, nextProductNumber);
+    }
 }

@@ -12,50 +12,34 @@ import io.dodn.springboot.storage.db.core.entity.product.response.OrderCreatePer
 @Component
 public class OrderProductConvert {
 
-	public static OrderProduct toDomain(OrderCreatePersistenceResponse dto) {
-		return OrderProduct.of(
-				dto.productId(),
-				dto.type(),
-				dto.name(),
-				BigDecimal.valueOf(dto.price())
-		);
-	}
+    public static OrderProduct toDomain(OrderCreatePersistenceResponse dto) {
+        return OrderProduct.of(dto.productId(), dto.type(), dto.name(), BigDecimal.valueOf(dto.price()));
+    }
 
+    public List<OrderProductRegistrationRequest> toOrderProductRegistrationRequest(List<OrderProduct> orderProductList,
+            Long orderId) {
+        return orderProductList.stream()
+            .map(orderProduct -> new OrderProductRegistrationRequest(orderProduct.getProductId(),
+                    orderProduct.getType(), orderProduct.getName(),
+                    Long.parseLong(String.valueOf(orderProduct.getPrice())), orderId))
+            .toList();
 
+    }
 
-	public List<OrderProductRegistrationRequest> toOrderProductRegistrationRequest(List< OrderProduct> orderProductList , Long orderId) {
-		return orderProductList.stream().map(orderProduct ->
-				new OrderProductRegistrationRequest(
-						orderProduct.getProductId(),
-						orderProduct.getType(),
-						orderProduct.getName(),
-						Long.parseLong(String.valueOf(orderProduct.getPrice())),
-						orderId
-				)).toList();
-
-
-	}
-
-
-
-
-
-//
-//	public static OrderProduct toDomain2(OrderCreatePersistenceResponse dto) {
-//		Product product = Product.builder()
-//			.productNumber(dto.productNumber())
-//			.type(dto.type())
-//			.sellingStatus(dto.sellingStatus())
-//			.name(dto.name())
-//			.price(BigDecimal.valueOf(dto.price()))
-//			.build();
-//
-//		return OrderProduct.builder()
-//			.product(product)
-//			.build();
-//
-//	}
-
-
+    //
+    // public static OrderProduct toDomain2(OrderCreatePersistenceResponse dto) {
+    // Product product = Product.builder()
+    // .productNumber(dto.productNumber())
+    // .type(dto.type())
+    // .sellingStatus(dto.sellingStatus())
+    // .name(dto.name())
+    // .price(BigDecimal.valueOf(dto.price()))
+    // .build();
+    //
+    // return OrderProduct.builder()
+    // .product(product)
+    // .build();
+    //
+    // }
 
 }

@@ -6,23 +6,17 @@ import io.dodn.springboot.storage.db.core.entity.product.response.CreateProductP
 import lombok.Builder;
 
 @Builder
-public record CreateProductResponse(
-	Long productNumber,
-	ProductType type,
-	ProductSellingStatus sellingStatus,
-	String name,
-	Long price,
-	Long stockQuantity
-) {
+public record CreateProductResponse(Long productNumber, ProductType type, ProductSellingStatus sellingStatus,
+        String name, Long price, Long stockQuantity) {
 
-	public static CreateProductResponse of(CreateProductPersistenceResponse response) {
-		return CreateProductResponse.builder()
-			.productNumber(response.productNumber())
-			.type(response.type())
-			.sellingStatus(response.sellingStatus())
-			.name(response.name())
-			.price(response.price())
-			.stockQuantity(response.stockQuantity())
-			.build();
-	}
+    public static CreateProductResponse of(CreateProductPersistenceResponse response) {
+        return CreateProductResponse.builder()
+            .productNumber(response.productNumber())
+            .type(response.type())
+            .sellingStatus(response.sellingStatus())
+            .name(response.name())
+            .price(response.price())
+            .stockQuantity(response.stockQuantity())
+            .build();
+    }
 }

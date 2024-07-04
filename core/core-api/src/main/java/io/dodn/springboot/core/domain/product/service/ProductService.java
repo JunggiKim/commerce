@@ -21,7 +21,6 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-
     @Transactional
     public CreateProductResponse createProduct(ProductCreateServiceRequest request) {
         Long nextProductNumber = createNextProductNumber();
@@ -39,10 +38,9 @@ public class ProductService {
 
     public List<SellingPossibleStatusResponse> getSellingProducts() {
         return productRepository.findAllBySellingStatusIn(ProductSellingStatus.forDisplay())
-                .stream()
-                .map(SellingPossibleStatusResponse::of)
-                .collect(Collectors.toList());
+            .stream()
+            .map(SellingPossibleStatusResponse::of)
+            .collect(Collectors.toList());
     }
-
 
 }

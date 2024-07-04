@@ -14,22 +14,23 @@
 // public class MailSendHistory extends BaseEntity {
 //
 //
-//     private String fromEmial;
+// private String fromEmial;
 //
-//     private String toEmail;
+// private String toEmail;
 //
-//     private String subject;
+// private String subject;
 //
-//     private String content;
+// private String content;
 //
 //
-//     @Builder
-//     private MailSendHistory(Long id, String fromEmial, String toEmail, String subject, String content) {
-//         this.fromEmial = fromEmial;
-//         this.toEmail = toEmail;
-//         this.subject = subject;
-//         this.content = content;
-//     }
+// @Builder
+// private MailSendHistory(Long id, String fromEmial, String toEmail, String subject,
+// String content) {
+// this.fromEmial = fromEmial;
+// this.toEmail = toEmail;
+// this.subject = subject;
+// this.content = content;
+// }
 //
 //
 //

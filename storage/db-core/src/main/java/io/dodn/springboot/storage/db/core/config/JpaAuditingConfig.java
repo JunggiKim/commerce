@@ -1,10 +1,10 @@
-//package io.dodn.springboot.storage.db.core.config;
+// package io.dodn.springboot.storage.db.core.config;
 //
 //
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 //
-//@EnableJpaAuditing
-//@Configuration
-//public class JpaAuditingConfig {
-//}
+// @EnableJpaAuditing
+// @Configuration
+// public class JpaAuditingConfig {
+// }

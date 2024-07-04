@@ -1,4 +1,6 @@
-package io.dodn.springboot.core.test.v1.presentation.order;// package io.dodn.springboot.test.api.v1.api.controller.order;
+package io.dodn.springboot.core.test.v1.presentation.order;// package
+                                                           // io.dodn.springboot.test.api.v1.api.controller.order;
+
 //
 // import static org.springframework.http.MediaType.*;
 // import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -25,58 +27,58 @@ package io.dodn.springboot.core.test.v1.presentation.order;// package io.dodn.sp
 // class OrderControllerTest extends ContextTest {
 //
 //
-//     private MockMvc mockMvc;
+// private MockMvc mockMvc;
 //
-//     private ObjectMapper objectMapper;
+// private ObjectMapper objectMapper;
 //
-//     @MockBean
-//     private OrderService orderService;
-//
-//
-//     @DisplayName("신규 주문을 등록한다.")
-//     @Test
-//     void createOrder() throws Exception {
-//         //  given
-//         OrderCreateRequest request = new OrderCreateRequest()
-//                 .productNumbers(List.of("001"))
-//                 .build();
-//
-//         //  when then
-//         mockMvc.perform(
-//                          post("/api/v1/orders/new")
-//                         .content(objectMapper.writeValueAsString(request))
-//                         .contentType(APPLICATION_JSON)
-//                 )
-//                 .andDo(print())
-//                 .andExpect(status().isOk())
-//                 .andExpect(jsonPath("$.code").value("200"))
-//                 .andExpect(jsonPath("$.status").value("OK"))
-//                 .andExpect(jsonPath("$.message").value("OK"));
-//
-//     }
+// @MockBean
+// private OrderService orderService;
 //
 //
-//     @DisplayName("신규 주문을 등록할때 상품번호는 1개 이상이어야한다.")
-//     @Test
-//     void createOrderWithEmptyProductNumbers() throws Exception {
-//         //  given
-//         OrderCreateRequest request = OrderCreateRequest.builder()
-//                 .productNumbers(List.of())
-//                  .build();
-//         //  when then
+// @DisplayName("신규 주문을 등록한다.")
+// @Test
+// void createOrder() throws Exception {
+// // given
+// OrderCreateRequest request = new OrderCreateRequest()
+// .productNumbers(List.of("001"))
+// .build();
 //
-//         mockMvc.perform(
-//                         post("/api/v1/orders/new")
-//                                 .content(objectMapper.writeValueAsString(request))
-//                                 .contentType(APPLICATION_JSON)
-//                 )
-//                 .andDo(print())
-//                 .andExpect(status().isBadRequest())
-//                 .andExpect(jsonPath("$.code").value("400"))
-//                 .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-//                 .andExpect(jsonPath("$.message").value("상품 번호 리스트는 필수입니다."))
-//                 .andExpect(jsonPath("$.data").isEmpty());
-//     }
+// // when then
+// mockMvc.perform(
+// post("/api/v1/orders/new")
+// .content(objectMapper.writeValueAsString(request))
+// .contentType(APPLICATION_JSON)
+// )
+// .andDo(print())
+// .andExpect(status().isOk())
+// .andExpect(jsonPath("$.code").value("200"))
+// .andExpect(jsonPath("$.status").value("OK"))
+// .andExpect(jsonPath("$.message").value("OK"));
+//
+// }
+//
+//
+// @DisplayName("신규 주문을 등록할때 상품번호는 1개 이상이어야한다.")
+// @Test
+// void createOrderWithEmptyProductNumbers() throws Exception {
+// // given
+// OrderCreateRequest request = OrderCreateRequest.builder()
+// .productNumbers(List.of())
+// .build();
+// // when then
+//
+// mockMvc.perform(
+// post("/api/v1/orders/new")
+// .content(objectMapper.writeValueAsString(request))
+// .contentType(APPLICATION_JSON)
+// )
+// .andDo(print())
+// .andExpect(status().isBadRequest())
+// .andExpect(jsonPath("$.code").value("400"))
+// .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+// .andExpect(jsonPath("$.message").value("상품 번호 리스트는 필수입니다."))
+// .andExpect(jsonPath("$.data").isEmpty());
+// }
 //
 //
 // }

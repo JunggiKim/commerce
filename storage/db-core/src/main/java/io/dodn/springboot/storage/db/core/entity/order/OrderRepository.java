@@ -1,6 +1,5 @@
 package io.dodn.springboot.storage.db.core.entity.order;
 
-
 import io.dodn.springboot.core.enums.OrderStatus;
 import io.dodn.springboot.storage.db.core.entity.order.request.OrderRegistrationRequest;
 import io.dodn.springboot.storage.db.core.entity.order.response.OrderRegistrationResponse;

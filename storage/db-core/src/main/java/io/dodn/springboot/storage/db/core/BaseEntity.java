@@ -22,7 +22,6 @@ public abstract class BaseEntity {
     @Column
     private LocalDateTime updatedAt;
 
-
     protected LocalDateTime getCreatedAt() {
         return createdAt;
     }

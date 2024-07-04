@@ -15,24 +15,17 @@ import io.dodn.springboot.storage.db.core.entity.product.response.SellingPossibl
 @Repository
 public interface ProductRepository {
 
-	/**
-	 * select *
-	 * from product
-	 * where selling_Status in('SELLING','HOLD')
-	 **/
-	List<SellingPossibleStatusPersistenceResponse> findAllBySellingStatusIn(List<ProductSellingStatus> sellingStatuses);
+    /**
+     * select * from product where selling_Status in('SELLING','HOLD')
+     **/
+    List<SellingPossibleStatusPersistenceResponse> findAllBySellingStatusIn(List<ProductSellingStatus> sellingStatuses);
 
-	List<AllFiledProductEntityDTO> findAllByProductNumberIn(List<Long> productNumbers);
+    List<AllFiledProductEntityDTO> findAllByProductNumberIn(List<Long> productNumbers);
 
-	Long findLatesProductNumber();
+    Long findLatesProductNumber();
 
-	List<OrderCreatePersistenceResponse> updateList(List<OrderCreatePersistenceRequest> productDTOList);
+    List<OrderCreatePersistenceResponse> updateList(List<OrderCreatePersistenceRequest> productDTOList);
 
-	CreateProductPersistenceResponse productRegistration(CreateProductPersistenceRequest request);
-
-
-
-
-
+    CreateProductPersistenceResponse productRegistration(CreateProductPersistenceRequest request);
 
 }

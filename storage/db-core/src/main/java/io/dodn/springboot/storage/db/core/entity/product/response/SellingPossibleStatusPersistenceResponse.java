@@ -6,22 +6,21 @@ import lombok.Builder;
 
 @Builder
 public record SellingPossibleStatusPersistenceResponse(
-	Long productNumber,
-	ProductType type,
-	String name,
-	Long price,
-	Long stockQuantity
-) {
+        Long productNumber,
+        ProductType type,
+        String name,
+        Long price,
+        Long stockQuantity) {
 
-	public static SellingPossibleStatusPersistenceResponse of(ProductEntity productEntity){
-			return SellingPossibleStatusPersistenceResponse.builder()
-				.productNumber(productEntity.getProductNumber())
-				.type(productEntity.getType())
-				.name(productEntity.getName())
-				.price(productEntity.getPrice())
-				.stockQuantity(productEntity.getStockQuantity())
-				.build();
+    public static SellingPossibleStatusPersistenceResponse of(ProductEntity productEntity) {
+        return SellingPossibleStatusPersistenceResponse.builder()
+            .productNumber(productEntity.getProductNumber())
+            .type(productEntity.getType())
+            .name(productEntity.getName())
+            .price(productEntity.getPrice())
+            .stockQuantity(productEntity.getStockQuantity())
+            .build();
 
-	}
+    }
 
 }

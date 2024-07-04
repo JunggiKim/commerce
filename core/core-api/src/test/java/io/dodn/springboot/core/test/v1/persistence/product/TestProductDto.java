@@ -8,43 +8,25 @@ import lombok.Builder;
 import java.math.BigDecimal;
 
 @Builder
-record TestProductDto(
-         Long productNumber,
-         ProductType type,
-         ProductSellingStatus sellingStatus,
-         String name,
-         BigDecimal price,
-         Long stockQuantity
-){
+record TestProductDto(Long productNumber, ProductType type, ProductSellingStatus sellingStatus, String name,
+        BigDecimal price, Long stockQuantity) {
 
-
-    public ProductEntity toEntity (){
+    public ProductEntity toEntity() {
         return ProductEntity.builder()
-                .productNumber(productNumber)
-                .type(type)
-                .sellingStatus(sellingStatus)
-                .name(name)
-                .price(price.longValue())
-                .stockQuantity(stockQuantity)
-                .build();
+            .productNumber(productNumber)
+            .type(type)
+            .sellingStatus(sellingStatus)
+            .name(name)
+            .price(price.longValue())
+            .stockQuantity(stockQuantity)
+            .build();
 
     }
 
-
-
-
-
-
-
-    public static TestProductDto of (ProductEntity productEntity){
-        return new TestProductDto(
-          productEntity.getProductNumber(),
-          productEntity.getType(),
-          productEntity.getSellingStatus(),
-          productEntity.getName(),
-          BigDecimal.valueOf(productEntity.getPrice()),
-          productEntity.getStockQuantity()
-        );
+    public static TestProductDto of(ProductEntity productEntity) {
+        return new TestProductDto(productEntity.getProductNumber(), productEntity.getType(),
+                productEntity.getSellingStatus(), productEntity.getName(), BigDecimal.valueOf(productEntity.getPrice()),
+                productEntity.getStockQuantity());
     }
 
 }

@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "orders")
 public class OrderEntity extends BaseEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,29 +35,22 @@ public class OrderEntity extends BaseEntity {
 
     private String userEmail;
 
-
     @Builder
-    private OrderEntity(String userEmail  ,Long totalPrice, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+    private OrderEntity(String userEmail, Long totalPrice, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
         this.orderStatus = orderStatus;
         this.totalPrice = totalPrice;
         this.registeredDateTime = registeredDateTime;
         this.userEmail = userEmail;
     }
 
-    public static OrderEntity create(
-            OrderStatus orderStatus,
-            Long totalPrice,
-            LocalDateTime registeredDateTime,
-            String userEmail
-    ) {
-    return OrderEntity.builder()
+    public static OrderEntity create(OrderStatus orderStatus, Long totalPrice, LocalDateTime registeredDateTime,
+            String userEmail) {
+        return OrderEntity.builder()
             .orderStatus(orderStatus)
             .totalPrice(totalPrice)
             .registeredDateTime(registeredDateTime)
             .userEmail(userEmail)
             .build();
     }
-
-
 
 }

@@ -1,6 +1,5 @@
 package io.dodn.springboot.core.api.controller.v1;
 
-
 import java.util.List;
 
 import io.dodn.springboot.core.domain.product.response.SellingPossibleStatusResponse;
@@ -23,14 +22,13 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/api/v1/products/new")
-    public ApiResponse<CreateProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest request){
+    public ApiResponse<CreateProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest request) {
         return ApiResponse.success(productService.createProduct(request.toServiceRequest()));
     }
 
     @GetMapping("/api/v1/products/selling")
-    public ApiResponse<List<SellingPossibleStatusResponse>> getSellingProducts(){
+    public ApiResponse<List<SellingPossibleStatusResponse>> getSellingProducts() {
         return ApiResponse.success(productService.getSellingProducts());
     }
-
 
 }

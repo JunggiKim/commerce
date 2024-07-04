@@ -1,6 +1,5 @@
 package io.dodn.springboot.core.domain.order.service;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,32 +24,37 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderBusiness {
 
-	private final OrderRepository orderRepository;
-	private final OrderProductRepository orderProductRepository;
-	private final ProductBusiness productBusiness;
-	private final OrderProductConvert orderProductConvert;
-	private final OrderConvert orderConvert;
+    private final OrderRepository orderRepository;
+
+    private final OrderProductRepository orderProductRepository;
+
+    private final ProductBusiness productBusiness;
+
+    private final OrderProductConvert orderProductConvert;
+
+    private final OrderConvert orderConvert;
+
+    public List<OrderProduct> orderProductDeductQuantities(List<OrderCreateServiceRequest.productDTO> requests)
+            throws IllegalAccessException {
 
 
-	public List<OrderProduct> orderProductDeductQuantities(OrderCreateServiceRequest request) throws
-		IllegalAccessException {
+        return productBusiness.productDeductQuantities(requests).stream()
+                .map(OrderProductConvert::toDomain).toList();
+    }
 
-		List<OrderCreatePersistenceResponse> orderCreateDtoList =
-			productBusiness.productDeductQuantities(request.productDTOS());
+    public CreateOrderResponse orderRegistration(List<OrderProduct> orderProductList, String userEmail,
+            LocalDateTime registeredDateTime) {
 
-        return orderCreateDtoList.stream()
-				.map(OrderProductConvert::toDomain).toList();
-	}
+        Order order = Order.create(orderProductList, registeredDateTime, userEmail);
 
+        OrderRegistrationResponse orderResponse = orderRepository
+            .orderRegistration(orderConvert.toOrderRegistrationRequest(order));
 
-	public CreateOrderResponse orderRegistration(List<OrderProduct> orderProductList , String userEmail , LocalDateTime registeredDateTime) {
+        List<OrderProductRegistrationResponse> responseList = orderProductRepository
+            .orderProductRegistration(orderProductConvert.toOrderProductRegistrationRequest(order.getOrderProducts(),
+                    orderResponse.orderId()));
 
-		Order order = Order.create(orderProductList, registeredDateTime, userEmail);
+        return CreateOrderResponse.of(orderResponse, responseList);
+    }
 
-		OrderRegistrationResponse orderResponse = orderRepository.orderRegistration(orderConvert.toOrderRegistrationRequest(order));
-
-		List<OrderProductRegistrationResponse> responseList = orderProductRepository.orderProductRegistration(orderProductConvert.toOrderProductRegistrationRequest(order.getOrderProducts(), orderResponse.orderId()));
-
-		return CreateOrderResponse.of(orderResponse , responseList);
-	}
 }

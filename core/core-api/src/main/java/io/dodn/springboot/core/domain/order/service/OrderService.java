@@ -18,25 +18,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderService {
 
-	private final ProductBusiness productBusiness;
+    private final ProductBusiness productBusiness;
 
-	private final OrderBusiness orderBusiness;
+    private final OrderBusiness orderBusiness;
 
-	private final ApplicationEventPublisher applicationEventPublisher;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
-	private final OrderConvert convert;
+    private final OrderConvert convert;
 
-	// 주문이 들어오면 들어온 상품의 재고가 있는지 먼저 확인을 한 후
-	// 재고 제거 후 주문을 등록하고 주문상품 등록 후
-	// 성공한 주문내역을 반환 한다
+    // 주문이 들어오면 들어온 상품의 재고가 있는지 먼저 확인을 한 후
+    // 재고 제거 후 주문을 등록하고 주문상품 등록 후
+    // 성공한 주문내역을 반환 한다
 
-	@Transactional
-	public CreateOrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) throws
-		IllegalAccessException {
+    @Transactional
+    public CreateOrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime)
+            throws IllegalAccessException {
 
-		List<OrderProduct> orderProductList = orderBusiness.orderProductDeductQuantities(request);
+       final List<OrderProduct> orderProductList = orderBusiness.orderProductDeductQuantities(request.productDTOS());
 
-		return orderBusiness.orderRegistration(orderProductList , request.userEmail() , registeredDateTime);
-	}
+        return orderBusiness.orderRegistration(orderProductList, request.userEmail(), registeredDateTime);
+    }
 
 }

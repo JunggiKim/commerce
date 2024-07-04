@@ -16,25 +16,18 @@ public enum ProductType {
 
     ELECTRONIC_PRODUCTS("전자제품");
 
-
     private final String text;
 
     public static boolean isElectronicProducts(ProductType type) {
         return Objects.equals(ELECTRONIC_PRODUCTS, type);
     }
 
-
     public static boolean isFood(ProductType type) {
         return Objects.equals(FOOD, type);
     }
 
-
     public static boolean isClothes(ProductType type) {
         return Objects.equals(CLOTHES, type);
     }
-
-
-
-
 
 }

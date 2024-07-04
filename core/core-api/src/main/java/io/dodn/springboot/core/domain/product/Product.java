@@ -13,51 +13,49 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product {
 
-	private Long productId;
+    private Long productId;
 
-	private Long productNumber;
+    private Long productNumber;
 
-	private ProductType type;
+    private ProductType type;
 
-	private ProductSellingStatus sellingStatus;
+    private ProductSellingStatus sellingStatus;
 
-	private String name;
+    private String name;
 
-	private BigDecimal price;
+    private BigDecimal price;
 
-	private Long stockQuantity;
+    private Long stockQuantity;
 
-	@Builder
-	private Product(Long productNumber, Long productId, ProductType type, ProductSellingStatus sellingStatus, String name,
-		BigDecimal price, Long stockQuantity) {
-		this.productId = productId;
-		this.type = type;
-		this.sellingStatus = sellingStatus;
-		this.name = name;
-		this.price = price;
-		this.stockQuantity = stockQuantity;
-		this.productNumber = productNumber;
-	}
+    @Builder
+    private Product(Long productNumber, Long productId, ProductType type, ProductSellingStatus sellingStatus,
+            String name, BigDecimal price, Long stockQuantity) {
+        this.productId = productId;
+        this.type = type;
+        this.sellingStatus = sellingStatus;
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+        this.productNumber = productNumber;
+    }
 
-	public Product Create(Long quantity) {
-		return Product.builder()
+    public Product Create(Long quantity) {
+        return Product.builder()
 
+            .build();
 
-			.build();
+    }
 
+    public boolean isQuantityLessThan(Long quantity) {
+        return this.stockQuantity < quantity;
 
-	}
+    }
 
-	public boolean isQuantityLessThan(Long quantity) {
-		return this.stockQuantity < quantity;
-
-	}
-
-	public void deductQuantity(Long quantity) throws IllegalAccessException {
-		if (isQuantityLessThan(quantity)) {
-			throw new IllegalArgumentException(this.name + "의 차감 할 재고 수량이 없습니다.");
-		}
-		this.stockQuantity -= quantity;
-	}
+    public void deductQuantity(Long quantity) throws IllegalAccessException {
+        if (isQuantityLessThan(quantity)) {
+            throw new IllegalArgumentException(this.name + "의 차감 할 재고 수량이 없습니다.");
+        }
+        this.stockQuantity -= quantity;
+    }
 
 }

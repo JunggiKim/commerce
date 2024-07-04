@@ -2,7 +2,6 @@ package io.dodn.springboot.core.api.controller.v1;
 
 import java.time.LocalDateTime;
 
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,11 +20,10 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/api/v1/orders/new")
-    public ApiResponse<CreateOrderResponse> createOrder(@Valid @RequestBody OrderCreateRequest request) throws Exception {
+    public ApiResponse<CreateOrderResponse> createOrder(@Valid @RequestBody OrderCreateRequest request)
+            throws Exception {
         LocalDateTime registeredDateTime = LocalDateTime.now();
         return ApiResponse.success(orderService.createOrder(request.toServiceRequest(), registeredDateTime));
     }
-
-
 
 }

@@ -9,22 +9,16 @@ import org.springframework.stereotype.Repository;
 import io.dodn.springboot.core.enums.ProductType.ProductSellingStatus;
 
 @Repository
-interface ProductJPARepository extends JpaRepository<ProductEntity,Long> {
+public interface ProductJPARepository extends JpaRepository<ProductEntity, Long> {
+
     /**
-    select *
-    from product
-    where selling_Status in('SELLING','HOLD')
-    **/
+     * select * from product where selling_Status in('SELLING','HOLD')
+     **/
     List<ProductEntity> findAllBySellingStatusIn(List<ProductSellingStatus> sellingStatuses);
-
-
 
     List<ProductEntity> findAllByProductNumberIn(List<Long> productNumbers);
 
-
     @Query(value = "select p.product_number from Product p order by id desc limit 1", nativeQuery = true)
     Long findLatesProductNumber();
-
-
 
 }

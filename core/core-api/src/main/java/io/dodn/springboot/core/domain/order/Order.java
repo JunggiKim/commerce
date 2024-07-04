@@ -12,10 +12,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Order  {
+public class Order {
 
     private Long orderId;
 
@@ -30,7 +29,8 @@ public class Order  {
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
-    private Order(Long orderId, String userEmail  , List<OrderProduct> products, OrderStatus orderStatus, LocalDateTime registeredDateTime, BigDecimal totalPrice) {
+    private Order(Long orderId, String userEmail, List<OrderProduct> products, OrderStatus orderStatus,
+            LocalDateTime registeredDateTime, BigDecimal totalPrice) {
         this.orderId = orderId;
         this.orderStatus = orderStatus;
         this.totalPrice = totalPrice;
@@ -39,8 +39,8 @@ public class Order  {
         this.userEmail = userEmail;
     }
 
-    public static Order create(List<OrderProduct>  products,LocalDateTime registeredDateTime,String userEmail) {
-    return Order.builder()
+    public static Order create(List<OrderProduct> products, LocalDateTime registeredDateTime, String userEmail) {
+        return Order.builder()
             .orderStatus(OrderStatus.INIT)
             .totalPrice(calculateTotalPrice(products))
             .products(products)
@@ -53,6 +53,5 @@ public class Order  {
         long sumNumber = products.stream().mapToLong(value -> value.getPrice().longValue()).sum();
         return BigDecimal.valueOf(sumNumber);
     }
-
 
 }

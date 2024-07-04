@@ -6,23 +6,12 @@ import io.dodn.springboot.storage.db.core.entity.order.OrderEntity;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record OrderRegistrationRequest(
-        OrderStatus orderStatus,
-        Long totalPrice,
-        LocalDateTime registeredDateTime,
-        String userEmail
-        ) {
+public record OrderRegistrationRequest(OrderStatus orderStatus, Long totalPrice, LocalDateTime registeredDateTime,
+        String userEmail) {
 
-        public OrderEntity toEntity (){
-             return OrderEntity.create(
-                    orderStatus,
-                    totalPrice,
-                    registeredDateTime,
-                    userEmail
-             );
+    public OrderEntity toEntity() {
+        return OrderEntity.create(orderStatus, totalPrice, registeredDateTime, userEmail);
 
-
-        }
-
+    }
 
 }

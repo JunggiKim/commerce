@@ -17,46 +17,46 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 class ProductRepositoryImpl implements ProductRepository {
 
-	private final ProductJPARepository productJPARepository;
+    private final ProductJPARepository productJPARepository;
 
-	/**
-	 * select *
-	 * from product
-	 * where selling_Status in('SELLING','HOLD')
-	 **/
-	@Override
-	public List<SellingPossibleStatusPersistenceResponse> findAllBySellingStatusIn(List<ProductSellingStatus> sellingStatuses) {
+    /**
+     * select * from product where selling_Status in('SELLING','HOLD')
+     **/
+    @Override
+    public List<SellingPossibleStatusPersistenceResponse> findAllBySellingStatusIn(
+            List<ProductSellingStatus> sellingStatuses) {
 
-		List<ProductEntity> entityList = productJPARepository.findAllBySellingStatusIn(sellingStatuses);
+        List<ProductEntity> entityList = productJPARepository.findAllBySellingStatusIn(sellingStatuses);
 
-		return entityList.stream().map(SellingPossibleStatusPersistenceResponse::of).toList();
-	}
+        return entityList.stream().map(SellingPossibleStatusPersistenceResponse::of).toList();
+    }
 
-	@Override
-	public List<AllFiledProductEntityDTO> findAllByProductNumberIn(List<Long> productNumbers) {
-		return productJPARepository.findAllByProductNumberIn(productNumbers)
-			.stream().map(AllFiledProductEntityDTO::of).toList();
+    @Override
+    public List<AllFiledProductEntityDTO> findAllByProductNumberIn(List<Long> productNumbers) {
+        return productJPARepository.findAllByProductNumberIn(productNumbers)
+            .stream()
+            .map(AllFiledProductEntityDTO::of)
+            .toList();
 
-	}
+    }
 
-	@Override
-	public Long findLatesProductNumber() {
-		return productJPARepository.findLatesProductNumber();
-	}
+    @Override
+    public Long findLatesProductNumber() {
+        return productJPARepository.findLatesProductNumber();
+    }
 
-	@Override
-	public List<OrderCreatePersistenceResponse> updateList(List<OrderCreatePersistenceRequest> productDTOList) {
-		List<ProductEntity> entityList = productDTOList.stream()
-			.map(OrderCreatePersistenceRequest::toEntity).toList();
+    @Override
+    public List<OrderCreatePersistenceResponse> updateList(List<OrderCreatePersistenceRequest> productDTOList) {
+        List<ProductEntity> entityList = productDTOList.stream().map(OrderCreatePersistenceRequest::toEntity).toList();
 
-		return productJPARepository.saveAll(entityList).stream().map(OrderCreatePersistenceResponse::of).toList();
+        return productJPARepository.saveAll(entityList).stream().map(OrderCreatePersistenceResponse::of).toList();
 
-	}
+    }
 
-	@Override
-	public CreateProductPersistenceResponse productRegistration(CreateProductPersistenceRequest request) {
-		ProductEntity savedEntity = productJPARepository.save(request.toEntity());
-		return CreateProductPersistenceResponse.of(savedEntity);
-	}
+    @Override
+    public CreateProductPersistenceResponse productRegistration(CreateProductPersistenceRequest request) {
+        ProductEntity savedEntity = productJPARepository.save(request.toEntity());
+        return CreateProductPersistenceResponse.of(savedEntity);
+    }
 
 }

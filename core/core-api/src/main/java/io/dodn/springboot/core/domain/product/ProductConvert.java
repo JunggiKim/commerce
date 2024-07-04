@@ -12,29 +12,27 @@ import io.dodn.springboot.storage.db.core.entity.product.request.OrderCreatePers
 @Component
 public class ProductConvert {
 
-	public List<Product> toDomainList(List<AllFiledProductEntityDTO> productDTOS) {
-		return productDTOS.stream().map(this::toDomain).toList();
-	}
+    public List<Product> toDomainList(List<AllFiledProductEntityDTO> productDTOS) {
+        return productDTOS.stream().map(this::toDomain).toList();
+    }
 
-	public  Product toDomain(AllFiledProductEntityDTO allFiledProductEntityDTO) {
-		return Product.builder()
-			.productId(allFiledProductEntityDTO.productId())
-			.type(allFiledProductEntityDTO.type())
-			.sellingStatus(allFiledProductEntityDTO.sellingStatus())
-			.name(allFiledProductEntityDTO.name())
-			.price(BigDecimal.valueOf(allFiledProductEntityDTO.price()))
-			.stockQuantity(allFiledProductEntityDTO.quantity())
-			.build();
-	}
+    public Product toDomain(AllFiledProductEntityDTO allFiledProductEntityDTO) {
+        return Product.builder()
+            .productId(allFiledProductEntityDTO.productId())
+            .type(allFiledProductEntityDTO.type())
+            .sellingStatus(allFiledProductEntityDTO.sellingStatus())
+            .name(allFiledProductEntityDTO.name())
+            .price(BigDecimal.valueOf(allFiledProductEntityDTO.price()))
+            .stockQuantity(allFiledProductEntityDTO.quantity())
+            .build();
+    }
 
-	public List<OrderCreatePersistenceRequest> toOrderCreatePersistenceRequest(List<AllFieldProductDTO> productDTOList) {
-		return productDTOList.stream().map(productDTO -> new OrderCreatePersistenceRequest(
-			productDTO.productNumber(),
-			productDTO.type(),
-			productDTO.sellingStatus(),
-			productDTO.name(),
-			productDTO.price(),
-			productDTO.quantity()
-		)).toList();
-	}
+    public List<OrderCreatePersistenceRequest> toOrderCreatePersistenceRequest(
+            List<AllFieldProductDTO> productDTOList) {
+        return productDTOList.stream()
+            .map(productDTO -> new OrderCreatePersistenceRequest(productDTO.productNumber(), productDTO.type(),
+                    productDTO.sellingStatus(), productDTO.name(), productDTO.price(), productDTO.quantity()))
+            .toList();
+    }
+
 }

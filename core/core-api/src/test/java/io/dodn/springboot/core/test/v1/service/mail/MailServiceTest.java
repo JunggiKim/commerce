@@ -1,4 +1,6 @@
-package io.dodn.springboot.core.test.v1.service.mail;// package io.dodn.springboot.test.api.v1.service.mail;
+package io.dodn.springboot.core.test.v1.service.mail;// package
+                                                     // io.dodn.springboot.test.api.v1.service.mail;
+
 //
 // import org.junit.jupiter.api.DisplayName;
 // import org.junit.jupiter.api.Test;
@@ -13,31 +15,33 @@ package io.dodn.springboot.core.test.v1.service.mail;// package io.dodn.springbo
 // @ExtendWith(MockitoExtension.class)
 // class MailServiceTest {
 //
-// //    @Mock
-// //    private MailSendClient mailSendClient;
+// // @Mock
+// // private MailSendClient mailSendClient;
 //
-//     @Mock
-//     private MailSendHistoryRepository mailSendHistoryRepository;
+// @Mock
+// private MailSendHistoryRepository mailSendHistoryRepository;
 //
-//     @InjectMocks
-//     private MailService mailService;
+// @InjectMocks
+// private MailService mailService;
 //
 //
 //
-//     @DisplayName("메일 전송 테스트")
-//     @Test
-//     void testSample(){
-//         //  given
-// //        BDDMockito.given(mailSendClient.sendEmail(anyString(),anyString(),anyString(),anyString()))
-// //                .willReturn(true);
-//         //  when
+// @DisplayName("메일 전송 테스트")
+// @Test
+// void testSample(){
+// // given
+// //
+// BDDMockito.given(mailSendClient.sendEmail(anyString(),anyString(),anyString(),anyString()))
+// // .willReturn(true);
+// // when
 //
-// //        boolean result = mailService.sendMail("", "", "", "");
+// // boolean result = mailService.sendMail("", "", "", "");
 //
-//         //  then
+// // then
 //
-// //        assertThat(result).isTrue();
-// //        Mockito.verify(mailSendHistoryRepository,Mockito.times(1)).save(any(MailSendHistory.class));
+// // assertThat(result).isTrue();
+// //
+// Mockito.verify(mailSendHistoryRepository,Mockito.times(1)).save(any(MailSendHistory.class));
 //
-//     }
+// }
 // }

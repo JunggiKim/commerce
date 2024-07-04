@@ -5,5 +5,6 @@
 //
 //
 // @Repository
-// public interface MailSendHistoryJPARepository extends JpaRepository<MailSendHistory,Long> {
+// public interface MailSendHistoryJPARepository extends
+// JpaRepository<MailSendHistory,Long> {
 // }

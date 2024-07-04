@@ -9,8 +9,8 @@
 // @FeignClient(value = "example-api", url = "${example.api.url}")
 // interface ExampleApi {
 //
-//     @RequestMapping(method = RequestMethod.POST, value = "/example/example-api",
-//             consumes = MediaType.APPLICATION_JSON_VALUE)
-//     ExampleResponseDto example(@RequestBody ExampleRequestDto request);
+// @RequestMapping(method = RequestMethod.POST, value = "/example/example-api",
+// consumes = MediaType.APPLICATION_JSON_VALUE)
+// ExampleResponseDto example(@RequestBody ExampleRequestDto request);
 //
 // }
