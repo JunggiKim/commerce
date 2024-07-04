@@ -34,8 +34,8 @@ public class ProductBusiness {
 
     private static List<Long> extractStockProductNumbers(List<Product> products) {
         return products.stream()
-            .filter(product -> ProductType.isClothes(product.getType()))
-            .map(Product::getProductId)
+            .filter(product -> ProductType.isClothes(product.type()))
+            .map(Product::productNumber)
             .collect(Collectors.toList());
     }
 
@@ -78,7 +78,7 @@ public class ProductBusiness {
     private Map<Long, Product> getProductQuantityMap(List<OrderCreateServiceRequest.productDTO> productDTOs) {
         List<Product> productList = findProductsBy(productDTOs);
 
-        return productList.stream().collect(Collectors.toMap(Product::getProductId, product -> product));
+        return productList.stream().collect(Collectors.toMap(Product::productId, product -> product));
 
     }
 

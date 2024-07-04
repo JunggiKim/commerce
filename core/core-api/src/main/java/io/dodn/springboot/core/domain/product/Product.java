@@ -9,53 +9,42 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Product {
+@Builder
+public record Product (
+     Long productId,
+     Long productNumber,
+     ProductType type,
+     ProductSellingStatus sellingStatus,
+     String name,
+     BigDecimal price,
+     Long stockQuantity
+){
 
-    private Long productId;
-
-    private Long productNumber;
-
-    private ProductType type;
-
-    private ProductSellingStatus sellingStatus;
-
-    private String name;
-
-    private BigDecimal price;
-
-    private Long stockQuantity;
-
-    @Builder
-    private Product(Long productNumber, Long productId, ProductType type, ProductSellingStatus sellingStatus,
-            String name, BigDecimal price, Long stockQuantity) {
-        this.productId = productId;
-        this.type = type;
-        this.sellingStatus = sellingStatus;
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-        this.productNumber = productNumber;
-    }
-
-    public Product Create(Long quantity) {
-        return Product.builder()
-
-            .build();
-
-    }
 
     public boolean isQuantityLessThan(Long quantity) {
         return this.stockQuantity < quantity;
 
     }
 
-    public void deductQuantity(Long quantity) throws IllegalAccessException {
+    public Product deductQuantity(Long quantity) throws IllegalAccessException {
         if (isQuantityLessThan(quantity)) {
             throw new IllegalArgumentException(this.name + "의 차감 할 재고 수량이 없습니다.");
         }
-        this.stockQuantity -= quantity;
+        long deductQuantity = stockQuantity - quantity;
+        return Product.builder()
+            .productId(productId)
+            .productNumber(productNumber)
+            .type(type)
+            .sellingStatus(sellingStatus)
+            .name(name)
+            .price(price)
+            .stockQuantity(deductQuantity)
+            .build();
     }
+
+
+
+
+
 
 }
