@@ -32,12 +32,12 @@ public record Product (
         }
         long deductQuantity = stockQuantity - quantity;
         return Product.builder()
-            .productId(productId)
-            .productNumber(productNumber)
-            .type(type)
-            .sellingStatus(sellingStatus)
-            .name(name)
-            .price(price)
+            .productId(this.productId)
+            .productNumber(this.productNumber)
+            .type(this.type)
+            .sellingStatus(this.sellingStatus)
+            .name(this.name)
+            .price(this.price)
             .stockQuantity(deductQuantity)
             .build();
     }

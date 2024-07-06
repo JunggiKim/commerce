@@ -51,7 +51,7 @@ public class OrderBusiness {
             .orderRegistration(orderConvert.toOrderRegistrationRequest(order));
 
         List<OrderProductRegistrationResponse> responseList = orderProductRepository
-            .orderProductRegistration(orderProductConvert.toOrderProductRegistrationRequest(order.getOrderProducts(),
+            .orderProductRegistration(orderProductConvert.toOrderProductRegistrationRequest(order.orderProducts(),
                     orderResponse.orderId()));
 
         return CreateOrderResponse.of(orderResponse, responseList);

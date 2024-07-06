@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 public class OrderConvert {
 
     public OrderRegistrationRequest toOrderRegistrationRequest(Order order) {
-        return new OrderRegistrationRequest(order.getOrderStatus(), order.getTotalPrice().longValue(),
-                order.getRegisteredDateTime(), order.getUserEmail());
+        return new OrderRegistrationRequest(order.orderStatus(), order.totalPrice().longValue(),
+                order.registeredDateTime(), order.userEmail());
     }
 
 }

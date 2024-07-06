@@ -10,8 +10,13 @@ public record AllFieldProductDTO(Long productNumber, ProductType type, ProductSe
         BigDecimal price, Long quantity) {
 
     public static AllFieldProductDTO of(Product product) {
-        return new AllFieldProductDTO(product.getProductId(), product.getType(), product.getSellingStatus(),
-                product.getName(), product.getPrice(), product.getStockQuantity());
+        return new AllFieldProductDTO(
+                product.productNumber(),
+                product.type(),
+                product.sellingStatus(),
+                product.name(),
+                product.price(),
+                product.stockQuantity());
     }
 
 }

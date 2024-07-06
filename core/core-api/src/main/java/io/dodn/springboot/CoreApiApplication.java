@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 
 @ConfigurationPropertiesScan
-@SpringBootTest
+@SpringBootApplication
 public class CoreApiApplication {
 
     public static void main(String[] args) {

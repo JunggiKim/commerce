@@ -19,9 +19,9 @@ public class OrderProductConvert {
     public List<OrderProductRegistrationRequest> toOrderProductRegistrationRequest(List<OrderProduct> orderProductList,
             Long orderId) {
         return orderProductList.stream()
-            .map(orderProduct -> new OrderProductRegistrationRequest(orderProduct.getProductId(),
-                    orderProduct.getType(), orderProduct.getName(),
-                    Long.parseLong(String.valueOf(orderProduct.getPrice())), orderId))
+            .map(orderProduct -> new OrderProductRegistrationRequest(orderProduct.productId(),
+                    orderProduct.type(), orderProduct.name(),
+                    Long.parseLong(String.valueOf(orderProduct.price())), orderId))
             .toList();
 
     }
